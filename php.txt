@@ -1,0 +1,4631 @@
+变量
+PHP 变量规则：
+    变量以 $ 符号开始，后面跟着变量的名称
+    变量名必须以字母或者下划线字符开始
+    变量名只能包含字母数字字符以及下划线（A-z、0-9 和 _ ）
+    变量名不能包含空格
+    变量名是区分大小写的（$y 和 $Y 是两个不同的变量）
+PHP 变量作用域
+    变量的作用域是脚本中变量可被引用/使用的部分。
+    PHP 有四种不同的变量作用域：
+        local
+        global
+        static
+        parameter
+局部和全局作用域
+    在所有函数外部定义的变量，拥有全局作用域。除了函数外，全局变量可以被脚本中的任何部分访问，要在一个函数中访问一个全局变量，需要使用 global 关键字。
+    在 PHP 函数内部声明的变量是局部变量，仅能在函数内部访问：
+PHP global 关键字
+    global 关键字用于函数内访问全局变量。
+    在函数内调用函数外定义的全局变量，我们需要在函数中的变量前加上 global 关键字：
+    PHP 将所有全局变量存储在一个名为 $GLOBALS[index] 的数组中。 index 保存变量的名称。这个数组可以在函数内部访问，也可以直接用来更新全局变量。
+Static 作用域
+    当一个函数完成时，它的所有变量通常都会被删除。然而，有时候您希望某个局部变量不要被删除。
+    要做到这一点，请在您第一次声明变量时使用 static 关键字：
+参数作用域
+    参数是通过调用代码将值传递给函数的局部变量。
+    参数是在参数列表中声明的，作为函数声明的一部分：
+
+
+PHP echo 和 print 语句
+echo 和 print 区别:
+    echo - 可以输出一个或多个字符串
+    print - 只允许输出一个字符串，返回值总为 1
+提示：echo 输出的速度比 print 快， echo 没有返回值，print有返回值1。
+
+
+PHP EOF(heredoc) 使用说明
+PHP EOF(heredoc)是一种在命令行shell（如sh、csh、ksh、bash、PowerShell和zsh）和程序语言（像Perl、PHP、Python和Ruby）里定义一个字符串的方法。
+使用概述：
+    1. 必须后接分号，否则编译通不过。
+    2. EOF 可以用任意其它字符代替，只需保证结束标识与开始标识一致。
+    3. 结束标识必须顶格独自占一行(即必须从行首开始，前后不能衔接任何空白和字符)。
+    4. 开始标识可以不带引号或带单双引号，不带引号与带双引号效果一致，解释内嵌的变量和转义符号，带单引号则不解释内嵌的变量和转义符号。
+    5. 当内容需要内嵌引号（单引号或双引号）时，不需要加转义符，本身对单双引号转义，此处相当与q和qq的用法。
+
+
+php5数据类型
+String（字符串）, Integer（整型）, Float（浮点型）, Boolean（布尔型）, Array（数组）, Object（对象）, NULL（空值）
+单引号或者双引号都行
+PHP var_dump() 函数返回变量的数据类型和值：
+
+
+PHP 类型比较
+虽然 PHP 是弱类型语言，但也需要明白变量类型及它们的意义，因为我们经常需要对 PHP 变量进行比较，包含松散和严格比较。
+    松散比较：使用两个等号 == 比较，只比较值，不比较类型。
+    严格比较：用三个等号 === 比较，除了比较值，也比较类型。
+例如，"42" 是一个字符串而 42 是一个整数。FALSE 是一个布尔值而 "false" 是一个字符串。
+
+
+PHP 常量
+    常量是一个简单值的标识符。该值在脚本中不能改变。
+    一个常量由英文字母、下划线、和数字组成,但数字不能作为首字母出现。 (常量名不需要加 $ 修饰符)。
+    注意： 常量在整个脚本中都可以使用。
+设置 PHP 常量
+设置常量，使用 define() 函数，函数语法如下：
+bool define ( string $name , mixed $value [, bool $case_insensitive = false ] )
+该函数有三个参数:
+    name：必选参数，常量名称，即标志符。
+    value：必选参数，常量的值。
+    case_insensitive ：可选参数，如果设置为 TRUE，该常量则大小写不敏感。默认是大小写敏感的。
+常量是全局的
+    常量在定义后，默认是全局变量，可以在整个运行的脚本的任何地方使用。
+    以下实例演示了在函数内使用常量，即便常量定义在函数外也可以正常使用常量。 
+使用常量时，不能在常量名前添加$ 符号，不然会将常量转换成新的未定义变量使用，会导致报错。
+
+
+PHP 中的字符串变量
+    字符串变量用于包含有字符的值。
+    在创建字符串之后，我们就可以对它进行操作了。您可以直接在函数中使用字符串，或者把它存储在变量中。
+    在下面的实例中，我们创建一个名为 txt 的字符串变量，并赋值为 "Hello world!" 。然后我们输出 txt 变量的值：
+PHP 并置运算符
+    在 PHP 中，只有一个字符串运算符。
+    并置运算符 (.) 用于把两个字符串值连接起来。
+    下面的实例演示了如何将两个字符串变量连接在一起：
+        <?php 
+        $txt1="Hello world!"; 
+        $txt2="What a nice day!"; 
+        echo $txt1 . " " . $txt2; 
+        ?>
+PHP strlen() 函数
+    有时知道字符串值的长度是很有用的。
+    strlen() 函数返回字符串的长度（字节数）。
+    下面的实例返回字符串 "Hello world!" 的长度：12
+PHP strpos() 函数
+    strpos() 函数用于在字符串内查找一个字符或一段指定的文本。
+    如果在字符串中找到匹配，该函数会返回第一个匹配的字符位置。如果未找到匹配，则返回 FALSE。
+    下面的实例在字符串 "Hello world!" 中查找文本 "world"：6 (0开始数)
+
+
+PHP 运算符
+    在 PHP 中，赋值运算符 = 用于给变量赋值。
+    在 PHP 中，算术运算符 + 用于把值加在一起。
+        a.b 并置 连接两个字符串 'hi'.'ha'  hiha
+    PHP7+ 版本新增整除运算符 intdiv(),使用实例：输出int(3)
+        <?php
+        var_dump(intdiv(10, 3));
+        ?>
+PHP 赋值运算符
+    在 PHP 中，基本的赋值运算符是 "="。它意味着左操作数被设置为右侧表达式的值。也就是说，"$x = 5" 的值是 5。
+PHP 递增/递减运算符
+    运算符	名称	描述
+    ++ x	预递增	x 加 1，然后返回 x
+    x ++	后递增	返回 x，然后 x 加 1
+    -- x	预递减	x 减 1，然后返回 x
+    x --	后递减	返回 x，然后 x 减 1
+PHP 比较运算符
+比较操作符可以让您比较两个值：
+    运算符	名称	描述	实例
+    x == y	等于	如果 x 等于 y，则返回 true	5==8 返回 false
+    x === y	绝对等于	如果 x 等于 y，且它们类型相同，则返回 true	5==="5" 返回 false
+    x != y	不等于	如果 x 不等于 y，则返回 true	5!=8 返回 true
+    x <> y	不等于	如果 x 不等于 y，则返回 true	5<>8 返回 true
+    x !== y	绝对不等于	如果 x 不等于 y，或它们类型不相同，则返回 true	5!=="5" 返回 true
+    x > y	大于	如果 x 大于 y，则返回 true	5>8 返回 false
+    x < y	小于	如果 x 小于 y，则返回 true	5<8 返回 true
+    x >= y	大于等于	如果 x 大于或者等于 y，则返回 true	5>=8 返回 false
+    x <= y	小于等于	如果 x 小于或者等于 y，则返回 true	5<=8 返回 true
+PHP 逻辑运算符
+    运算符	名称	描述	实例
+    x and y	与	如果 x 和 y 都为 true，则返回 true	x=6y=3 (x < 10 and y > 1) 返回 true
+    x or y	或	如果 x 和 y 至少有一个为 true，则返回 true	x=6y=3 (x==6 or y==5) 返回 true
+    x xor y	异或	如果 x 和 y 有且仅有一个为 true，则返回 true	x=6y=3 (x==6 xor y==3) 返回 false
+    x && y	与	如果 x 和 y 都为 true，则返回 true	x=6y=3(x < 10 && y > 1) 返回 true
+    x || y	或	如果 x 和 y 至少有一个为 true，则返回 true	x=6y=3(x==5 || y==5) 返回 false
+    ! x	非	如果 x 不为 true，则返回 true	x=6y=3!(x==y) 返回 true
+PHP 数组运算符
+    运算符	名称	描述
+    x + y	集合	x 和 y 的集合
+    x == y	相等	如果 x 和 y 具有相同的键/值对，则返回 true
+    x === y	恒等	如果 x 和 y 具有相同的键/值对，且顺序相同类型相同，则返回 true
+    x != y	不相等	如果 x 不等于 y，则返回 true
+    x <> y	不相等	如果 x 不等于 y，则返回 true
+    x !== y	不恒等	如果 x 不等于 y，则返回 true
+语法格式
+    (expr1) ? (expr2) : (expr3) 
+    对 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。
+    自 PHP 5.3 起，可以省略三元运算符中间那部分。表达式 expr1 ?: expr3 在 expr1 求值为 TRUE 时返回 expr1，否则返回 expr3。
+    <?php
+    $test = '菜鸟教程';
+    // 普通写法
+    $username = isset($test) ? $test : 'nobody';
+    echo $username, PHP_EOL;
+    
+    // PHP 5.3+ 版本写法
+    $username = $test ?: 'nobody';
+    echo $username, PHP_EOL;
+    ?>
+    在 PHP7+ 版本多了一个 NULL 合并运算符 ??，实例如下：
+    实例
+    <?php
+    // 如果 $_GET['user'] 不存在返回 'nobody'，否则返回 $_GET['user'] 的值
+    $username = $_GET['user'] ?? 'nobody';
+    // 类似的三元运算符
+    $username = isset($_GET['user']) ? $_GET['user'] : 'nobody';
+    ?>
+组合比较符(PHP7+)
+    PHP7+ 支持组合比较符（combined comparison operator）也称之为太空船操作符，符号为 <=>。组合比较运算符可以轻松实现两个变量的比较，当然不仅限于数值类数据的比较。
+    语法格式如下：
+    $c = $a <=> $b;
+    解析如下：
+    如果 $a > $b, 则 $c 的值为 1。
+    如果 $a == $b, 则 $c 的值为 0。
+    如果 $a < $b, 则 $c 的值为 -1。
+运算符优先级
+    下表按照优先级从高到低列出了运算符。同一行中的运算符具有相同优先级，此时它们的结合方向决定求值顺序。
+    实例
+    <?php
+    // 优先级： &&  >  =  >  and
+    // 优先级： ||  >  =  >  or
+    
+    $a = 3;
+    $b = false;
+    $c = $a or $b;
+    var_dump($c);          // 这里的 $c 为 int 值3，而不是 boolean 值 true
+    $d = $a || $b;
+    var_dump($d);          //这里的 $d 就是 boolean 值 true 
+    ?>
+    以上实例输出结果为：
+    int(3)
+    bool(true)
+括号的使用
+    我们通过括号的配对来明确标明运算顺序，而非靠运算符优先级和结合性来决定，通常能够增加代码的可读性
+
+
+PHP 条件语句
+    当您编写代码时，您常常需要为不同的判断执行不同的动作。您可以在代码中使用条件语句来完成此任务。
+    在 PHP 中，提供了下列条件语句：
+        if 语句 - 在条件成立时执行代码
+        if...else 语句 - 在条件成立时执行一块代码，条件不成立时执行另一块代码
+        if...elseif....else 语句 - 在若干条件之一成立时执行一个代码块
+        switch 语句 - 在若干条件之一成立时执行一个代码块
+PHP - if...else 语句
+    在条件成立时执行一块代码，条件不成立时执行另一块代码，请使用 if....else 语句
+PHP - if...elseif....else 语句
+    在若干条件之一成立时执行一个代码块，请使用 if....elseif...else 语句。.
+
+
+PHP Switch 语句
+    如果您希望有选择地执行若干代码块之一，请使用 switch 语句。
+    工作原理：首先对一个简单的表达式 n（通常是变量）进行一次计算。将表达式的值与结构中每个 case 的值进行比较。如果存在匹配，则执行与 case 关联的代码。代码执行后，使用 break 来阻止代码跳入下一个 case 中继续执行。default 语句用于不存在匹配（即没有 case 为真）时执行。
+    switch 语句不遇到 break 将不会自己"拐弯"
+
+
+PHP 数组
+数组能够在单个变量中存储多个值
+在 PHP 中创建数组
+    在 PHP 中，array() 函数用于创建数组：
+    array();
+    在 PHP 中，有三种类型的数组：
+    数值数组 - 带有数字 ID 键的数组
+    关联数组 - 带有指定的键的数组，每个键关联一个值
+    多维数组 - 包含一个或多个数组的数组
+PHP 数值数组
+    这里有两种创建数值数组的方法：
+    自动分配 ID 键（ID 键总是从 0 开始）：
+    人工分配 ID 键：
+获取数组的长度 - count() 函数
+    count() 函数用于返回数组的长度（元素的数量）：
+遍历数值数组
+    遍历并打印数值数组中的所有值，您可以使用 for 循环，如下所示：
+    实例
+    <?php
+    $cars=array("Volvo","BMW","Toyota");
+    $arrlength=count($cars);
+    
+    for($x=0;$x<$arrlength;$x++)
+    {
+        echo $cars[$x];
+        echo "<br>";
+    }
+    ?>
+PHP 关联数组
+    关联数组是使用您分配给数组的指定的键的数组。
+    这里有两种创建关联数组的方法：
+    $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+    or:
+    $age['Peter']="35";
+    $age['Ben']="37";
+    $age['Joe']="43";
+    随后可以在脚本中使用指定的键：
+    实例
+    <?php
+    $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+    echo "Peter is " . $age['Peter'] . " years old.";
+    ?>
+遍历关联数组
+    遍历并打印关联数组中的所有值，您可以使用 foreach 循环，如下所示：
+    实例
+    <?php
+    $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+    
+    foreach($age as $x=>$x_value)
+    {
+        echo "Key=" . $x . ", Value=" . $x_value;
+        echo "<br>";
+    }
+    ?>
+
+
+PHP 数组排序
+数组中的元素可以按字母或数字顺序进行降序或升序排列。
+PHP - 数组排序函数
+在本章中，我们将一一介绍下列 PHP 数组排序函数：
+    sort() - 对数组进行升序排列
+    rsort() - 对数组进行降序排列
+    asort() - 根据关联数组的值，对数组进行升序排列
+    ksort() - 根据关联数组的键，对数组进行升序排列
+    arsort() - 根据关联数组的值，对数组进行降序排列
+    krsort() - 根据关联数组的键，对数组进行降序排列
+
+
+PHP 超级全局变量
+PHP中预定义了几个超级全局变量（superglobals） ，这意味着它们在一个脚本的全部作用域中都可用。 你不需要特别说明，就可以在函数及类中使用。
+PHP 超级全局变量列表:
+    $GLOBALS
+    $_SERVER
+    $_REQUEST
+    $_POST
+    $_GET
+    $_FILES
+    $_ENV
+    $_COOKIE
+    $_SESSION
+PHP $GLOBALS
+    $GLOBALS 是PHP的一个超级全局变量组，在一个PHP脚本的全部作用域中都可以访问。
+    $GLOBALS 是一个包含了全部变量的全局组合数组。变量的名字就是数组的键。
+PHP $_SERVER
+    $_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；服务器可能会忽略一些，或者提供一些没有在这里列举出来的项目。
+PHP $_REQUEST
+    PHP $_REQUEST 用于收集HTML表单提交的数据。
+    以下实例显示了一个输入字段（input）及提交按钮(submit)的表单(form)。 当用户通过点击 "Submit" 按钮提交表单数据时, 表单数据将发送至<form>标签中 action 属性中指定的脚本文件。 在这个实例中，我们指定文件来处理表单数据。如果你希望其他的PHP文件来处理该数据，你可以修改该指定的脚本文件名。 然后，我们可以使用超级全局变量 $_REQUEST 来收集表单中的 input 字段数据:
+    实例
+    <html>
+    <body>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+    Name: <input type="text" name="fname">
+    <input type="submit">
+    </form>
+    <?php 
+    $name = $_REQUEST['fname']; 
+    echo $name; 
+    ?>
+    </body>
+    </html>
+PHP $_POST
+    PHP $_POST 被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="post"。
+    以下实例显示了一个输入字段（input）及提交按钮(submit)的表单(form)。 当用户通过点击 "Submit" 按钮提交表单数据时, 表单数据将发送至<form>标签中 action 属性中指定的脚本文件。 在这个实例中，我们指定文件来处理表单数据。如果你希望其他的PHP文件来处理该数据，你可以修改该指定的脚本文件名。 然后，我们可以使用超级全局变量 $_POST 来收集表单中的 input 字段数据:
+    实例
+ PHP $_GET
+PHP $_GET 同样被广泛应用于收集表单数据，在HTML form标签的指定该属性："method="get"。
+
+$_GET 也可以收集URL中发送的数据。
+    假定我们有一个包含参数的超链接HTML页面：
+    <html>
+    <body>
+    <a href="test_get.php?subject=PHP&web=runoob.com">Test $GET</a>
+    </body>
+    </html>
+    当用户点击链接 "Test $GET", 参数 "subject" 和 "web" 将发送至"test_get.php",你可以在 "test_get.php" 文件中使用 $_GET 变量来获取这些数据。   
+
+
+PHP 循环
+    在您编写代码时，您经常需要让相同的代码块一次又一次地重复运行。我们可以在代码中使用循环语句来完成这个任务。
+    在 PHP 中，提供了下列循环语句：
+        while - 只要指定的条件成立，则循环执行代码块
+        do...while - 首先执行一次代码块，然后在指定的条件成立时重复这个循环
+        for - 循环执行代码块指定的次数
+        foreach - 根据数组中每个元素来循环代码块
+foreach 循环
+    foreach 循环用于遍历数组。
+    语法
+    foreach ($array as $value)
+    {
+        要执行代码;
+    }
+    每进行一次循环，当前数组元素的值就会被赋值给 $value 变量（数组指针会逐一地移动），在进行下一次循环时，您将看到数组中的下一个值。
+    实例
+    下面的实例演示了一个输出给定数组的值的循环：
+    实例
+    <?php
+    $x=array("one","two","three");
+    foreach ($x as $value)
+    {
+        echo $value . "<br>";
+    }
+    ?>
+
+PHP 函数
+    PHP 的真正威力源自于它的函数。
+    在 PHP 中，提供了超过 1000 个内建的函数。
+创建 PHP 函数
+    函数是通过调用函数来执行的。
+    语法
+    <?php
+    function functionName()
+    {
+        // 要执行的代码
+    }
+    ?>
+    PHP 函数准则：
+        函数的名称应该提示出它的功能
+        函数名称以字母或下划线开头（不能以数字开头）
+PHP 函数 - 添加参数
+    为了给函数添加更多的功能，我们可以添加参数，参数类似变量。
+    参数就在函数名称后面的一个括号内指定。
+PHP 函数 - 返回值
+    如需让函数返回一个值，请使用 return 语句。
+    实例
+    <?php
+    function add($x,$y)
+    {
+        $total=$x+$y;
+        return $total;
+    }
+    echo "1 + 16 = " . add(1,16);
+    ?>
+
+
+PHP 向它运行的任何脚本提供了大量的预定义常量。
+    不过很多常量都是由不同的扩展库定义的，只有在加载了这些扩展库时才会出现，或者动态加载后，或者在编译时已经包括进去了。
+    有八个魔术常量它们的值随着它们在代码中的位置改变而改变。
+    例如 __LINE__ 的值就依赖于它在脚本中所处的行来决定。这些特殊的常量不区分大小写，如下：
+__LINE__ (两个下划线)
+    文件中的当前行号。
+    <?php
+    echo '这是第 " '  . __LINE__ . ' " 行';
+    ?>
+__FILE__
+    文件的完整路径和文件名。如果用在被包含文件中，则返回被包含的文件名。
+    自 PHP 4.0.2 起，__FILE__ 总是包含一个绝对路径（如果是符号连接，则是解析后的绝对路径），而在此之前的版本有时会包含一个相对路径。
+__DIR__
+    文件所在的目录。如果用在被包括文件中，则返回被包括的文件所在的目录。
+    它等价于 dirname(__FILE__)。除非是根目录，否则目录中名不包括末尾的斜杠。（PHP 5.3.0中新增）
+    <?php
+    echo '该文件位于 " '  . __DIR__ . ' " ';
+    ?>
+    以上实例输出结果为：
+    该文件位于 “ E:\wamp\www\test ”
+__FUNCTION__
+    函数名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该函数被定义时的名字（区分大小写）。在 PHP 4 中该值总是小写字母的。
+    实例
+    <?php
+    function test() {
+        echo  '函数名为：' . __FUNCTION__ ;
+    }
+    test();
+    ?>
+    以上实例输出结果为：
+    函数名为：test
+__CLASS__
+    类的名称（PHP 4.3.0 新加）。自 PHP 5 起本常量返回该类被定义时的名字（区分大小写）。
+    在 PHP 4 中该值总是小写字母的。类名包括其被声明的作用区域（例如 Foo\Bar）。注意自 PHP 5.4 起 __CLASS__ 对 trait 也起作用。当用在 trait 方法中时，__CLASS__ 是调用 trait 方法的类的名字。
+__TRAIT__
+    Trait 的名字（PHP 5.4.0 新加）。自 PHP 5.4.0 起，PHP 实现了代码复用的一个方法，称为 traits。
+    Trait 名包括其被声明的作用区域（例如 Foo\Bar）。
+    从基类继承的成员被插入的 SayWorld Trait 中的 MyHelloWorld 方法所覆盖。其行为 MyHelloWorld 类中定义的方法一致。优先顺序是当前类中的方法会覆盖 trait 方法，而 trait 方法又覆盖了基类中的方法。
+    实例
+    <?php
+    class Base {
+        public function sayHello() {
+            echo 'Hello ';
+        }
+    }
+    trait SayWorld {
+        public function sayHello() {
+            parent::sayHello();
+            echo 'World!';
+        }
+    }
+    class MyHelloWorld extends Base {
+        use SayWorld;
+    }
+    $o = new MyHelloWorld();
+    $o->sayHello();
+    ?>`
+__METHOD__
+    类的方法名（PHP 5.0.0 新加）。返回该方法被定义时的名字（区分大小写）。
+    实例:
+    实例
+    <?php
+    function test() {
+        echo  '函数名为：' . __METHOD__ ;
+    }
+    test();
+    ?>
+    以上实例输出结果为：
+    函数名为：test
+_NAMESPACE__
+    当前命名空间的名称（区分大小写）。此常量是在编译时定义的（PHP 5.3.0 新增）。
+    实例:
+    实例
+    <?php
+    namespace MyProject;
+
+    echo '命名空间为："', __NAMESPACE__, '"'; // 输出 "MyProject"
+    ?>
+    以上实例输出结果为：
+    命名空间为："MyProject"
+
+
+PHP 命名空间(namespace)
+    PHP 命名空间(namespace)是在PHP 5.3中加入的，如果你学过C#和Java，那命名空间就不算什么新事物。 不过在PHP当中还是有着相当重要的意义。
+    PHP 命名空间可以解决以下两类问题：
+        用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。
+        为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。
+定义命名空间
+    默认情况下，所有常量、类和函数名都放在全局空间下，就和PHP支持命名空间之前一样。
+    命名空间通过关键字namespace 来声明。如果一个文件中包含命名空间，它必须在其它所有代码之前声明命名空间。语法格式如下；
+    <?php  
+    // 定义代码在 'MyProject' 命名空间中  
+    namespace MyProject;  
+    // ... 代码 ...  
+    你也可以在同一个文件中定义不同的命名空间代码，如：
+    <?php  
+    namespace MyProject;
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+    namespace AnotherProject;
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+    ?>  
+    不建议使用这种语法在单个文件中定义多个命名空间。建议使用下面的大括号形式的语法。
+    <?php
+    namespace MyProject {
+        const CONNECT_OK = 1;
+        class Connection { /* ... */ }
+        function connect() { /* ... */  }
+    }
+    namespace AnotherProject {
+        const CONNECT_OK = 1;
+        class Connection { /* ... */ }
+        function connect() { /* ... */  }
+    }
+    ?>      
+    将全局的非命名空间中的代码与命名空间中的代码组合在一起，只能使用大括号形式的语法。全局代码必须用一个不带名称的 namespace 语句加上大括号括起来，例如：
+    <?php
+    namespace MyProject {
+
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+    }
+    namespace { // 全局代码
+    session_start();
+    $a = MyProject\connect();
+    echo MyProject\Connection::start();
+    }
+    ?>
+    在声明命名空间之前唯一合法的代码是用于定义源文件编码方式的 declare 语句。所有非 PHP 代码包括空白符都不能出现在命名空间的声明之前。
+
+    <?php
+    declare(encoding='UTF-8'); //定义多个命名空间和不包含在命名空间中的代码
+    namespace MyProject {
+
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function connect() { /* ... */  }
+    }
+
+    namespace { // 全局代码
+    session_start();
+    $a = MyProject\connect();
+    echo MyProject\Connection::start();
+    }
+    ?>
+    以下代码会出现语法错误：
+    <html>
+    <?php
+    namespace MyProject; // 命名空间前出现了“<html>” 会致命错误 -　命名空间必须是程序脚本的第一条语句
+    ?>
+子命名空间
+    与目录和文件的关系很像，PHP 命名空间也允许指定层次化的命名空间的名称。因此，命名空间的名字可以使用分层次的方式定义：
+    <?php
+    namespace MyProject\Sub\Level;  //声明分层次的单个命名空间
+    const CONNECT_OK = 1;
+    class Connection { /* ... */ }
+    function Connect() { /* ... */  }
+    ?>
+    上面的例子创建了常量 MyProject\Sub\Level\CONNECT_OK，类 MyProject\Sub\Level\Connection 和函数 MyProject\Sub\Level\Connect。
+命名空间使用
+    PHP 命名空间中的类名可以通过三种方式引用：
+    非限定名称，或不包含前缀的类名称，例如 $a=new foo(); 或 foo::staticmethod();。如果当前命名空间是 currentnamespace，foo 将被解析为 currentnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，则 foo 会被解析为foo。 警告：如果命名空间中的函数或常量未定义，则该非限定的函数名称或常量名称会被解析为全局函数名称或常量名称。
+    限定名称,或包含前缀的名称，例如 $a = new subnamespace\foo(); 或 subnamespace\foo::staticmethod();。如果当前的命名空间是 currentnamespace，则 foo 会被解析为 currentnamespace\subnamespace\foo。如果使用 foo 的代码是全局的，不包含在任何命名空间中的代码，foo 会被解析为subnamespace\foo。
+    完全限定名称，或包含了全局前缀操作符的名称，例如， $a = new \currentnamespace\foo(); 或 \currentnamespace\foo::staticmethod();。在这种情况下，foo 总是被解析为代码中的文字名(literal name)currentnamespace\foo。
+    下面是一个使用这三种方式的实例：
+
+    file1.php 文件代码
+
+    <?php
+    namespace Foo\Bar\subnamespace; 
+
+    const FOO = 1;
+    function foo() {}
+    class foo
+    {
+        static function staticmethod() {}
+    }
+    ?>
+    file2.php 文件代码
+
+    <?php
+    namespace Foo\Bar;
+    include 'file1.php';
+
+    const FOO = 2;
+    function foo() {}
+    class foo
+    {
+        static function staticmethod() {}
+    }
+
+    /* 非限定名称 */
+    foo(); // 解析为函数 Foo\Bar\foo
+    foo::staticmethod(); // 解析为类 Foo\Bar\foo ，方法为 staticmethod
+    echo FOO; // 解析为常量 Foo\Bar\FOO
+
+    /* 限定名称 */
+    subnamespace\foo(); // 解析为函数 Foo\Bar\subnamespace\foo
+    subnamespace\foo::staticmethod(); // 解析为类 Foo\Bar\subnamespace\foo,
+                                    // 以及类的方法 staticmethod
+    echo subnamespace\FOO; // 解析为常量 Foo\Bar\subnamespace\FOO
+                                    
+    /* 完全限定名称 */
+    \Foo\Bar\foo(); // 解析为函数 Foo\Bar\foo
+    \Foo\Bar\foo::staticmethod(); // 解析为类 Foo\Bar\foo, 以及类的方法 staticmethod
+    echo \Foo\Bar\FOO; // 解析为常量 Foo\Bar\FOO
+    ?>
+    注意访问任意全局类、函数或常量，都可以使用完全限定名称，例如 \strlen() 或 \Exception 或 \INI_ALL。
+
+    在命名空间内部访问全局类、函数和常量：
+
+    <?php
+    namespace Foo;
+
+    function strlen() {}
+    const INI_ALL = 3;
+    class Exception {}
+
+    $a = \strlen('hi'); // 调用全局函数strlen
+    $b = \INI_ALL; // 访问全局常量 INI_ALL
+    $c = new \Exception('error'); // 实例化全局类 Exception
+    ?>
+命名空间和动态语言特征
+    PHP 命名空间的实现受到其语言自身的动态特征的影响。因此，如果要将下面的代码转换到命名空间中，动态访问元素。
+
+    example1.php 文件代码：
+
+    <?php
+    class classname
+    {
+        function __construct()
+        {
+            echo __METHOD__,"\n";
+        }
+    }
+    function funcname()
+    {
+        echo __FUNCTION__,"\n";
+    }
+    const constname = "global";
+
+    $a = 'classname';
+    $obj = new $a; // prints classname::__construct
+    $b = 'funcname';
+    $b(); // prints funcname
+    echo constant('constname'), "\n"; // prints global
+    ?>
+    必须使用完全限定名称（包括命名空间前缀的类名称）。注意因为在动态的类名称、函数名称或常量名称中，限定名称和完全限定名称没有区别，因此其前导的反斜杠是不必要的。
+
+    动态访问命名空间的元素
+
+    <?php
+    namespace namespacename;
+    class classname
+    {
+        function __construct()
+        {
+            echo __METHOD__,"\n";
+        }
+    }
+    function funcname()
+    {
+        echo __FUNCTION__,"\n";
+    }
+    const constname = "namespaced";
+
+    include 'example1.php';
+
+    $a = 'classname';
+    $obj = new $a; // 输出 classname::__construct
+    $b = 'funcname';
+    $b(); // 输出函数名
+    echo constant('constname'), "\n"; // 输出 global
+
+    /* 如果使用双引号，使用方法为 "\\namespacename\\classname"*/
+    $a = '\namespacename\classname';
+    $obj = new $a; // 输出 namespacename\classname::__construct
+    $a = 'namespacename\classname';
+    $obj = new $a; // 输出 namespacename\classname::__construct
+    $b = 'namespacename\funcname';
+    $b(); // 输出 namespacename\funcname
+    $b = '\namespacename\funcname';
+    $b(); // 输出 namespacename\funcname
+    echo constant('\namespacename\constname'), "\n"; // 输出 namespaced
+    echo constant('namespacename\constname'), "\n"; // 输出 namespaced
+    ?>
+namespace关键字和__NAMESPACE__常量
+    PHP支持两种抽象的访问当前命名空间内部元素的方法，__NAMESPACE__ 魔术常量和namespace关键字。
+
+    常量__NAMESPACE__的值是包含当前命名空间名称的字符串。在全局的，不包括在任何命名空间中的代码，它包含一个空的字符串。
+
+    __NAMESPACE__ 示例, 在命名空间中的代码
+
+    <?php
+    namespace MyProject;
+
+    echo '"', __NAMESPACE__, '"'; // 输出 "MyProject"
+    ?>
+    __NAMESPACE__ 示例，全局代码
+
+    <?php
+
+    echo '"', __NAMESPACE__, '"'; // 输出 ""
+    ?>
+    常量 __NAMESPACE__ 在动态创建名称时很有用，例如：
+
+    使用__NAMESPACE__动态创建名称
+
+    <?php
+    namespace MyProject;
+
+    function get($classname)
+    {
+        $a = __NAMESPACE__ . '\\' . $classname;
+        return new $a;
+    }
+    ?>
+    关键字 namespace 可用来显式访问当前命名空间或子命名空间中的元素。它等价于类中的 self 操作符。
+    namespace操作符，命名空间中的代码
+    关键字 namespace 可用来显式访问当前命名空间或子命名空间中的元素。它等价于类中的 self 操作符。
+
+    namespace操作符，命名空间中的代码
+    <?php
+    namespace MyProject;
+    use blah\blah as mine; // see "Using namespaces: importing/aliasing"
+    blah\mine(); // calls function blah\blah\mine()
+    namespace\blah\mine(); // calls function MyProject\blah\mine()
+    namespace\func(); // calls function MyProject\func()
+    namespace\sub\func(); // calls function MyProject\sub\func()
+    namespace\cname::method(); // calls static method "method" of class MyProject\cname
+    $a = new namespace\sub\cname(); // instantiates object of class MyProject\sub\cname
+    $b = namespace\CONSTANT; // assigns value of constant MyProject\CONSTANT to $b
+    ?>
+    namespace操作符, 全局代码
+    <?php
+    namespace\func(); // calls function func()
+    namespace\sub\func(); // calls function sub\func()
+    namespace\cname::method(); // calls static method "method" of class cname
+    $a = new namespace\sub\cname(); // instantiates object of class sub\cname
+    $b = namespace\CONSTANT; // assigns value of constant CONSTANT to $b
+    ?>
+使用命名空间：别名/导入
+    PHP 命名空间支持 有两种使用别名或导入方式：为类名称使用别名，或为命名空间名称使用别名。
+
+    在PHP中，别名是通过操作符 use 来实现的. 下面是一个使用所有可能的三种导入方式的例子：
+
+    1、使用use操作符导入/使用别名
+
+    <?php
+    namespace foo;
+    use My\Full\Classname as Another;
+
+    // 下面的例子与 use My\Full\NSname as NSname 相同
+    use My\Full\NSname;
+
+    // 导入一个全局类
+    use \ArrayObject;
+
+    $obj = new namespace\Another; // 实例化 foo\Another 对象
+    $obj = new Another; // 实例化 My\Full\Classname　对象
+    NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func
+    $a = new ArrayObject(array(1)); // 实例化 ArrayObject 对象
+    // 如果不使用 "use \ArrayObject" ，则实例化一个 foo\ArrayObject 对象
+    ?>
+    2、 一行中包含多个use语句
+
+    <?php
+    use My\Full\Classname as Another, My\Full\NSname;
+
+    $obj = new Another; // 实例化 My\Full\Classname 对象
+    NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func
+    ?>
+    导入操作是在编译执行的，但动态的类名称、函数名称或常量名称则不是。
+    3、导入和动态名称
+
+    <?php
+    use My\Full\Classname as Another, My\Full\NSname;
+
+    $obj = new Another; // 实例化一个 My\Full\Classname 对象
+    $a = 'Another';
+    $obj = new $a;      // 实际化一个 Another 对象
+    ?>
+    另外，导入操作只影响非限定名称和限定名称。完全限定名称由于是确定的，故不受导入的影响。
+    4、导入和完全限定名称
+    <?php
+    use My\Full\Classname as Another, My\Full\NSname;
+
+    $obj = new Another; // 实例化 My\Full\Classname 类
+    $obj = new \Another; // 实例化 Another 类
+    $obj = new Another\thing; // 实例化 My\Full\Classname\thing 类
+    $obj = new \Another\thing; // 实例化 Another\thing 类
+    ?>
+使用命名空间：后备全局函数/常量
+    在一个命名空间中，当 PHP 遇到一个非限定的类、函数或常量名称时，它使用不同的优先策略来解析该名称。类名称总是解析到当前命名空间中的名称。因此在访问系统内部或不包含在命名空间中的类名称时，必须使用完全限定名称，例如：
+    1、在命名空间中访问全局类
+    <?php
+    namespace A\B\C;
+    class Exception extends \Exception {}
+    $a = new Exception('hi'); // $a 是类 A\B\C\Exception 的一个对象
+    $b = new \Exception('hi'); // $b 是类 Exception 的一个对象
+
+    $c = new ArrayObject; // 致命错误, 找不到 A\B\C\ArrayObject 类
+    ?>
+    对于函数和常量来说，如果当前命名空间中不存在该函数或常量，PHP 会退而使用全局空间中的函数或常量。
+        2、 命名空间中后备的全局函数/常量
+
+        <?php
+        namespace A\B\C;
+
+        const E_ERROR = 45;
+        function strlen($str)
+        {
+            return \strlen($str) - 1;
+        }
+
+        echo E_ERROR, "\n"; // 输出 "45"
+        echo INI_ALL, "\n"; // 输出 "7" - 使用全局常量 INI_ALL
+
+        echo strlen('hi'), "\n"; // 输出 "1"
+        if (is_array('hi')) { // 输出 "is not array"
+            echo "is array\n";
+        } else {
+            echo "is not array\n";
+        }
+        ?>
+全局空间
+    如果没有定义任何命名空间，所有的类与函数的定义都是在全局空间，与 PHP 引入命名空间概念前一样。在名称前加上前缀 \ 表示该名称是全局空间中的名称，即使该名称位于其它的命名空间中时也是如此。
+
+    使用全局空间说明
+
+    <?php
+    namespace A\B\C;
+
+    /* 这个函数是 A\B\C\fopen */
+    function fopen() { 
+        /* ... */
+        $f = \fopen(...); // 调用全局的fopen函数
+        return $f;
+    } 
+    ?>
+命名空间的顺序
+    自从有了命名空间之后，最容易出错的该是使用类的时候，这个类的寻找路径是什么样的了。
+    名称解析遵循下列规则：
+
+    对完全限定名称的函数，类和常量的调用在编译时解析。例如 new \A\B 解析为类 A\B。
+    所有的非限定名称和限定名称（非完全限定名称）根据当前的导入规则在编译时进行转换。例如，如果命名空间 A\B\C 被导入为 C，那么对 C\D\e() 的调用就会被转换为 A\B\C\D\e()。
+    在命名空间内部，所有的没有根据导入规则转换的限定名称均会在其前面加上当前的命名空间名称。例如，在命名空间 A\B 内部调用 C\D\e()，则 C\D\e() 会被转换为 A\B\C\D\e() 。
+    非限定类名根据当前的导入规则在编译时转换（用全名代替短的导入名称）。例如，如果命名空间 A\B\C 导入为C，则 new C() 被转换为 new A\B\C() 。
+    在命名空间内部（例如A\B），对非限定名称的函数调用是在运行时解析的。例如对函数 foo() 的调用是这样解析的：
+    在当前命名空间中查找名为 A\B\foo() 的函数
+    尝试查找并调用 全局(global) 空间中的函数 foo()。
+    在命名空间（例如A\B）内部对非限定名称或限定名称类（非完全限定名称）的调用是在运行时解析的。下面是调用 new C() 及 new D\E() 的解析过程： new C()的解析:
+    在当前命名空间中查找A\B\C类。
+    尝试自动装载类A\B\C。
+    new D\E()的解析:
+    在类名称前面加上当前命名空间名称变成：A\B\D\E，然后查找该类。
+    尝试自动装载类 A\B\D\E。
+    为了引用全局命名空间中的全局类，必须使用完全限定名称 new \C()。
+可以把非限定名称类比为文件名（例如 comment.php）、.限定名称类比为相对路径名（例如 ./article/comment.php）、完全限定名称类比为绝对路径名（例如 /blog/article/comment.php），这样可能会更容易理解。
+    再添一例：
+    <?php 
+    //创建空间Blog
+    namespace Blog;
+    class Comment { }
+    //非限定名称，表示当前Blog空间
+    //这个调用将被解析成 Blog\Comment();
+    $blog_comment = new Comment();
+    //限定名称，表示相对于Blog空间
+    //这个调用将被解析成 Blog\Article\Comment();
+    $article_comment = new Article\Comment(); //类前面没有反斜杆\
+    //完全限定名称，表示绝对于Blog空间
+    //这个调用将被解析成 Blog\Comment();
+    $article_comment = new \Blog\Comment(); //类前面有反斜杆\
+    //完全限定名称，表示绝对于Blog空间
+    //这个调用将被解析成 Blog\Article\Comment();
+    $article_comment = new \Blog\Article\Comment(); //类前面有反斜杆\
+    //创建Blog的子空间Article
+    namespace Blog\Article;
+    class Comment { }
+    ?>
+
+
+PHP 面向对象
+    在面向对象的程序设计（英语：Object-oriented programming，缩写：OOP）中，对象是一个由信息及对信息进行处理的描述所组成的整体，是对现实世界的抽象。
+    在现实世界里我们所面对的事情都是对象，如计算机、电视机、自行车等。
+    对象的主要三个特性：
+    对象的行为：可以对 对象施加那些操作，开灯，关灯就是行为。
+    对象的形态：当施加那些方法是对象如何响应，颜色，尺寸，外型。
+    对象的表示：对象的表示就相当于身份证，具体区分在相同的行为与状态下有什么不同。
+    比如 Animal(动物) 是一个抽象类，我们可以具体到一只狗跟一只羊，而狗跟羊就是具体的对象，他们有颜色属性，可以写，可以跑等行为状态。
+PHP 类定义
+    解析如下：
+    类使用 class 关键字后加上类名定义。
+    类名后的一对大括号({})内可以定义变量和方法。
+    类的变量使用 var 来声明, 变量也可以初始化值。
+    函数定义类似 PHP 函数的定义，但函数只能通过该类及其实例化的对象访问。
+    变量 $this 代表自身的对象。
+PHP 中创建对象
+    类创建后，我们可以使用 new 运算符来实例化该类的对象：
+
+    $runoob = new Site;
+    $taobao = new Site;
+    $google = new Site;
+    调用成员方法
+    在实例化对象后，我们可以使用该对象调用成员方法，该对象的成员方法只能操作该对象的成员变量：
+    完整代码如下：
+
+    实例
+    <?php 
+    class Site { 
+    /* 成员变量 */ 
+    var $url; 
+    var $title; 
+    
+    /* 成员函数 */ 
+    function setUrl($par){ 
+        $this->url = $par; 
+    } 
+    
+    function getUrl(){ 
+        echo $this->url . PHP_EOL; 
+    } 
+    
+    function setTitle($par){ 
+        $this->title = $par; 
+    } 
+    
+    function getTitle(){ 
+        echo $this->title . PHP_EOL; 
+    } 
+    } 
+
+    $runoob = new Site; 
+    $taobao = new Site; 
+    $google = new Site; 
+
+    // 调用成员函数，设置标题和URL 
+    $runoob->setTitle( "菜鸟教程" ); 
+    $taobao->setTitle( "淘宝" ); 
+    $google->setTitle( "Google 搜索" ); 
+
+    $runoob->setUrl( 'www.runoob.com' ); 
+    $taobao->setUrl( 'www.taobao.com' ); 
+    $google->setUrl( 'www.google.com' ); 
+
+    // 调用成员函数，获取标题和URL 
+    $runoob->getTitle(); 
+    $taobao->getTitle(); 
+    $google->getTitle(); 
+
+    $runoob->getUrl(); 
+    $taobao->getUrl(); 
+    $google->getUrl(); 
+    ?>
+PHP 构造函数
+    构造函数是一种特殊的方法。主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值，在创建对象的语句中与 new 运算符一起使用。
+    PHP 5 允许开发者在一个类中定义一个方法作为构造函数，语法格式如下：
+    void __construct ([ mixed $args [, $... ]] )
+    在上面的例子中我们就可以通过构造方法来初始化 $url 和 $title 变量：
+    function __construct( $par1, $par2 ) {
+    $this->url = $par1;
+    $this->title = $par2;
+    }
+析构函数
+    析构函数(destructor) 与构造函数相反，当对象结束其生命周期时（例如对象所在的函数已调用完毕），系统自动执行析构函数。
+    PHP 5 引入了析构函数的概念，这类似于其它面向对象的语言，其语法格式如下：
+    void __destruct ( void )
+    实例
+    <?php
+    class MyDestructableClass {
+    function __construct() {
+        print "构造函数\n";
+        $this->name = "MyDestructableClass";
+    }
+
+    function __destruct() {
+        print "销毁 " . $this->name . "\n";
+    }
+    }
+    $obj = new MyDestructableClass();
+    ?>
+继承
+    PHP 使用关键字 extends 来继承一个类，PHP 不支持多继承，格式如下：
+    class Child extends Parent {
+    // 代码部分
+    }
+        实例中 Child_Site 类继承了 Site 类，并扩展了功能：
+
+    <?php 
+    // 子类扩展站点类别
+    class Child_Site extends Site {
+    var $category;
+
+        function setCate($par){
+            $this->category = $par;
+        }
+    
+        function getCate(){
+            echo $this->category . PHP_EOL;
+        }
+    }
+方法重写
+    如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。
+    实例中重写了 getUrl 与 getTitle 方法：
+访问控制
+    PHP 对属性或方法的访问控制，是通过在前面添加关键字 public（公有），protected（受保护）或 private（私有）来实现的。
+    public（公有）：公有的类成员可以在任何地方被访问。
+    protected（受保护）：受保护的类成员则可以被其自身以及其子类和父类访问。
+    private（私有）：私有的类成员则只能被其定义所在的类访问。
+    属性的访问控制
+    类属性必须定义为公有，受保护，私有之一。如果用 var 定义，则被视为公有。
+    方法的访问控制
+    类中的方法可以被定义为公有，私有或受保护。如果没有设置这些关键字，则该方法默认为公有
+接口
+    使用接口（interface），可以指定某个类必须实现哪些方法，但不需要定义这些方法的具体内容。
+    接口是通过 interface 关键字来定义的，就像定义一个标准的类一样，但其中定义所有的方法都是空的。
+    接口中定义的所有方法都必须是公有，这是接口的特性。
+    要实现一个接口，使用 implements 操作符。类中必须实现接口中定义的所有方法，否则会报一个致命错误。类可以实现多个接口，用逗号来分隔多个接口的名称
+常量
+    可以把在类中始终保持不变的值定义为常量。在定义和使用常量的时候不需要使用 $ 符号。
+    常量的值必须是一个定值，不能是变量，类属性，数学运算的结果或函数调用。
+    自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字（如 self，parent 或 static）
+    实例
+    <?php
+    class MyClass
+    {
+        const constant = '常量值';
+
+        function showConstant() {
+            echo  self::constant . PHP_EOL;
+        }
+    }
+
+    echo MyClass::constant . PHP_EOL;
+
+    $classname = "MyClass";
+    echo $classname::constant . PHP_EOL; // 自 5.3.0 起
+
+    $class = new MyClass();
+    $class->showConstant();
+
+    echo $class::constant . PHP_EOL; // 自 PHP 5.3.0 起
+    ?>
+抽象类
+    任何一个类，如果它里面至少有一个方法是被声明为抽象的，那么这个类就必须被声明为抽象的。
+    定义为抽象的类不能被实例化。
+    被定义为抽象的方法只是声明了其调用方式（参数），不能定义其具体的功能实现。
+    继承一个抽象类的时候，子类必须定义父类中的所有抽象方法；另外，这些方法的访问控制必须和父类中一样（或者更为宽松）。例如某个抽象方法被声明为受保护的，那么子类中实现的方法就应该声明为受保护的或者公有的，而不能定义为私有的。
+    此外，子类方法可以包含父类抽象方法中不存在的可选参数。
+
+    例如，子类定义了一个可选参数，而父类抽象方法的声明里没有，则也是可以正常运行的。
+
+    <?php
+    abstract class AbstractClass
+    {
+        // 我们的抽象方法仅需要定义需要的参数
+        abstract protected function prefixName($name);
+
+    }
+
+    class ConcreteClass extends AbstractClass
+    {
+
+        // 我们的子类可以定义父类签名中不存在的可选参数
+        public function prefixName($name, $separator = ".") {
+            if ($name == "Pacman") {
+                $prefix = "Mr";
+            } elseif ($name == "Pacwoman") {
+                $prefix = "Mrs";
+            } else {
+                $prefix = "";
+            }
+            return "{$prefix}{$separator} {$name}";
+        }
+    }
+
+    $class = new ConcreteClass;
+    echo $class->prefixName("Pacman"), "\n";
+    echo $class->prefixName("Pacwoman"), "\n";
+    ?>
+Static 关键字
+    声明类属性或方法为 static(静态)，就可以不实例化类而直接访问。
+    静态属性不能通过一个类已实例化的对象来访问（但静态方法可以）。
+    由于静态方法不需要通过对象即可调用，所以伪变量 $this 在静态方法中不可用。
+    静态属性不可以由对象通过 -> 操作符来访问。
+    自 PHP 5.3.0 起，可以用一个变量来动态调用类。但该变量的值不能为关键字 self，parent 或 static。
+    <?php
+    class Foo {
+    public static $my_static = 'foo';
+    
+    public function staticValue() {
+        return self::$my_static;
+    }
+    }
+
+    print Foo::$my_static . PHP_EOL;
+    $foo = new Foo();
+
+    print $foo->staticValue() . PHP_EOL;
+    ?>  
+    执行以上程序，输出结果为：
+    foo
+    foo
+    在访问PHP类中的成员变量或方法时，如果被引用的变量或者方法被声明成const（常量）或者static（静态属性），那么就必须使用域操作符::，而如果被引用的变量或者方法没有被声明成const或者static，那么就使用指向操作符->
+Final 关键字
+    PHP 5 新增了一个 final 关键字。如果父类中的方法被声明为 final，则子类无法覆盖该方法。如果一个类被声明为 final，则不能被继承。
+调用父类构造方法
+    PHP 不会在子类的构造方法中自动的调用父类的构造方法。要执行父类的构造方法，需要在子类的构造方法中调用 parent::__construct() 。   
+
+
+PHP 表单和用户输入
+PHP 中的 $_GET 和 $_POST 变量用于检索表单中的信息，比如用户输入。
+PHP 表单处理
+有一点很重要的事情值得注意，当处理 HTML 表单时，PHP 能把来自 HTML 页面中的表单元素自动变成可供 PHP 脚本使用。
+PHP 获取下拉菜单的数据
+PHP 下拉菜单单选
+    以下实例我们设置了下拉菜单三个选项，表单使用 GET 方式获取数据，action 属性值为空表示提交到当前脚本，我们可以通过 select 的 name 属性获取下拉菜单的值：
+    php_form_select.php 文件代码：
+    <?php
+    $q = isset($_GET['q'])? htmlspecialchars($_GET['q']) : '';
+    if($q) {
+            if($q =='RUNOOB') {
+                    echo '菜鸟教程<br>http://www.runoob.com';
+            } else if($q =='GOOGLE') {
+                    echo 'Google 搜索<br>http://www.google.com';
+            } else if($q =='TAOBAO') {
+                    echo '淘宝<br>http://www.taobao.com';
+            }
+    } else {
+    ?>
+    <form action="" method="get"> 
+        <select name="q">
+        <option value="">选择一个站点:</option>
+        <option value="RUNOOB">Runoob</option>
+        <option value="GOOGLE">Google</option>
+        <option value="TAOBAO">Taobao</option>
+        </select>
+        <input type="submit" value="提交">
+        </form>
+    <?php
+    }
+    ?>
+PHP 下拉菜单多选
+如果下拉菜单是多选的（ multiple="multiple"），我们可以通过将设置 select name="q[]" 以数组的方式获取，以下使用 POST 方式提交，代码如下所示：
+    <?php
+    $q = isset($_POST['q'])? $_POST['q'] : '';
+    if(is_array($q)) {
+        $sites = array(
+                'RUNOOB' => '菜鸟教程: http://www.runoob.com',
+                'GOOGLE' => 'Google 搜索: http://www.google.com',
+                'TAOBAO' => '淘宝: http://www.taobao.com',
+        );
+        foreach($q as $val) {
+            // PHP_EOL 为常量，用于换行
+            echo $sites[$val] . PHP_EOL;
+        }
+        
+    } else {
+    ?>
+    <form action="" method="post"> 
+        <select multiple="multiple" name="q[]">
+        <option value="">选择一个站点:</option>
+        <option value="RUNOOB">Runoob</option>
+        <option value="GOOGLE">Google</option>
+        <option value="TAOBAO">Taobao</option>
+        </select>
+        <input type="submit" value="提交">
+        </form>
+    <?php
+    }
+    ?>
+单选按钮表单
+    PHP 单选按钮表单中 name 属性的值是一致的，value 值是不同的，代码如下所示：
+    php_form_radio.php 文件代码：
+    <?php
+    $q = isset($_GET['q'])? htmlspecialchars($_GET['q']) : '';
+    if($q) {
+            if($q =='RUNOOB') {
+                    echo '菜鸟教程<br>http://www.runoob.com';
+            } else if($q =='GOOGLE') {
+                    echo 'Google 搜索<br>http://www.google.com';
+            } else if($q =='TAOBAO') {
+                    echo '淘宝<br>http://www.taobao.com';
+            }
+    } else {
+    ?><form action="" method="get"> 
+        <input type="radio" name="q" value="RUNOOB" />Runoob
+        <input type="radio" name="q" value="GOOGLE" />Google
+        <input type="radio" name="q" value="TAOBAO" />Taobao
+        <input type="submit" value="提交">
+    </form>
+    <?php
+    }
+    ?>
+checkbox 复选框
+    PHP checkbox 复选框可以选择多个值：
+    php_form_select_checkbox.php 文件代码：
+    <?php
+    $q = isset($_POST['q'])? $_POST['q'] : '';
+    if(is_array($q)) {
+        $sites = array(
+                'RUNOOB' => '菜鸟教程: http://www.runoob.com',
+                'GOOGLE' => 'Google 搜索: http://www.google.com',
+                'TAOBAO' => '淘宝: http://www.taobao.com',
+        );
+        foreach($q as $val) {
+            // PHP_EOL 为常量，用于换行
+            echo $sites[$val] . PHP_EOL;
+        }
+        
+    } else {
+    ?><form action="" method="post"> 
+        <input type="checkbox" name="q[]" value="RUNOOB"> Runoob<br> 
+        <input type="checkbox" name="q[]" value="GOOGLE"> Google<br> 
+        <input type="checkbox" name="q[]" value="TAOBAO"> Taobao<br>
+        <input type="submit" value="提交">
+    </form>
+    <?php
+    }
+    ?>
+表单验证
+    我们应该尽可能的对用户的输入进行验证（通过客户端脚本）。浏览器验证速度更快，并且可以减轻服务器的压力。
+    如果用户输入需要插入数据库，您应该考虑使用服务器验证。在服务器验证表单的一种好的方式是，把表单的数据传给当前页面（异步提交的方式更好），而不是跳转到不同的页面。这样用户就可以在同一张表单页面得到错误信息。用户也就更容易发现错误了。
+$_GET、$_POST 和 $_REQUEST 的区别？
+    $_GET 变量接受所有以 get 方式发送的请求，及浏览器地址栏中的 ? 之后的内容。
+    $_POST 变量接受所有以 post 方式发送的请求，例如，一个 form 以 method=post 提交，提交后 php 会处理 post 过来的全部变量
+    $_REQUEST 支持两种方式发送过来的请求，即 post 和 get 它都可以接受，显示不显示要看传递方法，get 会显示在 url 中（有字符数限制），post 不会在 url 中显示，可以传递任意多的数据（只要服务器支持）。
+
+
+PHP 表单验证
+    在处理PHP表单时我们需要考虑安全性。
+    本章节我们将展示PHP表单数据安全处理，为了防止黑客及垃圾信息我们需要对表单进行数据安全验证。
+    在本章节介绍的HTML表单中包含以下输入字段： 必须与可选文本字段，单选按钮，及提交按钮：
+表单元素
+    HTML 表单代码如下所示:
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    该表单使用 method="post" 方法来提交数据。
+    什么是 $_SERVER["PHP_SELF"] 变量?
+        $_SERVER["PHP_SELF"]是超级全局变量，返回当前正在执行脚本的文件名，与 document root相关。
+    所以， $_SERVER["PHP_SELF"] 会发送表单数据到当前页面，而不是跳转到不同的页面。
+    什么是 htmlspecialchars()方法?
+    htmlspecialchars() 函数把一些预定义的字符转换为 HTML 实体。
+    预定义的字符是：
+        & （和号） 成为 &amp;
+        " （双引号） 成为 &quot;
+        ' （单引号） 成为 &#039;
+        < （小于） 成为 &lt;
+        > （大于） 成为 &gt;
+PHP表单中需引起注重的地方？
+    $_SERVER["PHP_SELF"] 变量有可能会被黑客使用！
+    当黑客使用跨网站脚本的HTTP链接来攻击时，$_SERVER["PHP_SELF"]服务器变量也会被植入脚本。原因就是跨网站脚本是附在执行文件的路径后面的，因此$_SERVER["PHP_SELF"]的字符串就会包含HTTP链接后面的JavaScript程序代码。
+    Note	XSS又叫 CSS (Cross-Site Script) ,跨站脚本攻击。恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。
+    指定以下表单文件名为 "test_form.php":
+    <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+    现在，我们使用URL来指定提交地址 "test_form.php",以上代码修改为如下所示:
+    <form method="post" action="test_form.php">
+    这样做就很好了。
+    但是，考虑到用户会在浏览器地址栏中输入以下地址:
+    http://www.runoob.com/test_form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E
+    以上的 URL 中，将被解析为如下代码并执行：
+    <form method="post" action="test_form.php/"><script>alert('hacked')</script>
+    代码中添加了 script 标签，并添加了alert命令。 当页面载入时会执行该Javascript代码（用户会看到弹出框）。 这仅仅只是一个简单的实例来说明PHP_SELF变量会被黑客利用。
+    请注意， 任何JavaScript代码可以添加在<script>标签中！ 黑客可以利用这点重定向页面到另外一台服务器的页面上，页面 代码文件中可以保护恶意代码，代码可以修改全局变量或者获取用户的表单数据。
+如何避免 $_SERVER["PHP_SELF"] 被利用?
+    $_SERVER["PHP_SELF"] 可以通过 htmlspecialchars() 函数来避免被利用。
+    form 代码如下所示：
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    htmlspecialchars() 把一些预定义的字符转换为 HTML 实体。现在如果用户想利用 PHP_SELF 变量, 结果将输出如下所示：
+    <form method="post" action="test_form.php/&quot;&gt;&lt;script&gt;alert('hacked')&lt;/script&gt;">
+    尝试该漏洞失败！
+使用 PHP 验证表单数据
+    首先我们对用户所有提交的数据都通过 PHP 的 htmlspecialchars() 函数处理。
+    当我们使用 htmlspecialchars() 函数时，在用户尝试提交以下文本域:
+    <script>location.href('http://www.runoob.com')</script>
+    该代码将不会被执行，因为它会被保存为HTML转义代码，如下所示：
+    &lt;script&gt;location.href('http://www.runoob.com')&lt;/script&gt;
+    以上代码是安全的，可以正常在页面显示或者插入邮件中。
+    当用户提交表单时，我们将做以下两件事情：
+        使用 PHP trim() 函数去除用户输入数据中不必要的字符 (如：空格，tab，换行)。
+        使用PHP stripslashes()函数去除用户输入数据中的反斜杠 (\)
+    接下来让我们将这些过滤的函数写在一个我们自己定义的函数中，这样可以大大提高代码的复用性。
+    将函数命名为 test_input()。
+    现在，我们可以通过test_input()函数来检测 $_POST 中的所有变量, 脚本代码如下所示：
+    注意我们在执行以上脚本时，会通过$_SERVER["REQUEST_METHOD"]来检测表单是否被提交 。如果 REQUEST_METHOD 是 POST, 表单将被提交 - 数据将被验证。如果表单未提交将跳过验证并显示空白。
+    在以上实例中使用输入项都是可选的，即使用户不输入任何数据也可以正常显示。
+    在接下来的章节中我们将介绍如何对用户输入的数据进行验证。
+
+PHP - 必需字段
+PHP - 显示错误信息
+我们为每个字段中添加了一些脚本， 各个脚本会在信息输入错误时显示错误信息
+
+PHP 表单 - 验证邮件和URL
+PHP - 验证名称
+    以下代码将通过简单的方式来检测 name 字段是否包含字母和空格，如果 name 字段值不合法，将输出错误信息：
+    $name = test_input($_POST["name"]);
+    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+    $nameErr = "只允许字母和空格"; 
+    }
+    preg_match — 进行正则表达式匹配。
+    语法：
+    int preg_match ( string $pattern , string $subject [, array $matches [, int $flags ]] )
+    在 subject 字符串中搜索与 pattern 给出的正则表达式相匹配的内容。如果提供了 matches ，则其会被搜索的结果所填充。$matches[0] 将包含与整个模式匹配的文本，$matches[1] 将包含与第一个捕获的括号中的子模式所匹配的文本，以此类推。
+PHP - 验证邮件
+    以下代码将通过简单的方式来检测 e-mail 地址是否合法。如果 e-mail 地址不合法，将输出错误信息：
+    $email = test_input($_POST["email"]);
+    if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$email)) {
+    $emailErr = "非法邮箱格式"; 
+    }
+PHP - 验证 URL
+    以下代码将检测URL地址是否合法 (以下正则表达式运行URL中含有破折号:"-")， 如果 URL 地址不合法，将输出错误信息：
+    $website = test_input($_POST["website"]);
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$website)) {
+    $websiteErr = "非法的 URL 的地址"; 
+    }
+
+PHP - 在表单中确保输入值
+    在用户点击提交按钮后，为确保字段值是否输入正确，我们在HTML的input元素中插添加PHP脚本， 各字段名为: name, email, 和 website。 在备注中的 textarea 字段中，我们将脚本放于 <textarea> 和 </textarea> 标签之间。
+    PHP脚本输出值为： $name, $email, $website, 和 $comment 变量。 
+    然后，我们同样需要检查被选中的单选按钮， 对于这一点，我们 必须设置好checked属性(不是radio按钮的 value 属性) :
+
+PHP $_GET 变量
+    在 PHP 中，预定义的 $_GET 变量用于收集来自 method="get" 的表单中的值。
+$_GET 变量
+    预定义的 $_GET 变量用于收集来自 method="get" 的表单中的值。
+    从带有 GET 方法的表单发送的信息，对任何人都是可见的（会显示在浏览器的地址栏），并且对发送信息的量也有限制。
+    实例
+    form.html 文件代码如下：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <form action="welcome.php" method="get">
+    名字: <input type="text" name="fname">
+    年龄: <input type="text" name="age">
+    <input type="submit" value="提交">
+    </form>
+
+    </body>
+    </html>
+    当用户点击 "Submit" 按钮时，发送到服务器的 URL 如下所示：
+
+    http://www.runoob.com/welcome.php?fname=Runoob&age=3
+    "welcome.php" 文件现在可以通过 $_GET 变量来收集表单数据了（请注意，表单域的名称会自动成为 $_GET 数组中的键）：
+
+    欢迎 <?php echo $_GET["fname"]; ?>!<br>
+    你的年龄是 <?php echo $_GET["age"]; ?>  岁。
+何时使用 method="get"？
+    在 HTML 表单中使用 method="get" 时，所有的变量名和值都会显示在 URL 中。
+    注释：所以在发送密码或其他敏感信息时，不应该使用这个方法！
+    然而，正因为变量显示在 URL 中，因此可以在收藏夹中收藏该页面。在某些情况下，这是很有用的。
+    注释：HTTP GET 方法不适合大型的变量值。它的值是不能超过 2000 个字符的。
+
+PHP $_POST 变量
+在 PHP 中，预定义的 $_POST 变量用于收集来自 method="post" 的表单中的值。
+$_POST 变量
+    预定义的 $_POST 变量用于收集来自 method="post" 的表单中的值。
+    从带有 POST 方法的表单发送的信息，对任何人都是不可见的（不会显示在浏览器的地址栏），并且对发送信息的量也没有限制。
+    注释：然而，默认情况下，POST 方法的发送信息的量最大值为 8 MB（可通过设置 php.ini 文件中的 post_max_size 进行更改）
+    实例
+    form.html 文件代码如下：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <form action="welcome.php" method="post">
+    名字: <input type="text" name="fname">
+    年龄: <input type="text" name="age">
+    <input type="submit" value="提交">
+    </form>
+
+    </body>
+    </html>
+    当用户点击 "提交" 按钮时，URL 类似如下所示：
+
+    http://www.runoob.com/welcome.php
+    "welcome.php" 文件现在可以通过 $_POST 变量来收集表单数据了（请注意，表单域的名称会自动成为 $_POST 数组中的键）：
+
+    欢迎 <?php echo $_POST["fname"]; ?>!<br>
+    你的年龄是 <?php echo $_POST["age"]; ?>  岁。
+何时使用 method="post"？
+    从带有 POST 方法的表单发送的信息，对任何人都是不可见的，并且对发送信息的量也没有限制。
+    然而，由于变量不显示在 URL 中，所以无法把页面加入书签。
+PHP $_REQUEST 变量
+    预定义的 $_REQUEST 变量包含了 $_GET、$_POST 和 $_COOKIE 的内容。
+    $_REQUEST 变量可用来收集通过 GET 和 POST 方法发送的表单数据。
+    实例
+    你可以将 "welcome.php" 文件修改为如下代码，它可以接受 $_GET、$_POST等数据。
+        欢迎 <?php echo $_REQUEST["fname"]; ?>!<br>
+        你的年龄是 <?php echo $_REQUEST["age"]; ?>  岁。
+
+    
+HP 多维数组
+    一个数组中的值可以是另一个数组，另一个数组的值也可以是一个数组。依照这种方式，我们可以创建二维或者三维数组：
+    实例
+    <?php
+    // 二维数组:
+    $cars = array
+    (
+        array("Volvo",100,96),
+        array("BMW",60,59),
+        array("Toyota",110,100)
+    );
+    ?>
+PHP - 多维数组
+    多维数组是包含一个或多个数组的数组。
+    在多维数组中，主数组中的每一个元素也可以是一个数组，子数组中的每一个元素也可以是一个数组。
+    实例
+    在这个实例中，我们创建了一个自动分配 ID 键的多维数组：
+    <?php 
+    $sites = array 
+    ( 
+        "runoob"=>array 
+        ( 
+            "菜鸟教程", 
+            "http://www.runoob.com" 
+        ), 
+        "google"=>array 
+        ( 
+            "Google 搜索", 
+            "http://www.google.com" 
+        ), 
+        "taobao"=>array 
+        ( 
+            "淘宝", 
+            "http://www.taobao.com" 
+        ) 
+    ); 
+    print("<pre>"); // 格式化输出数组 
+    print_r($sites); 
+    print("</pre>"); 
+    ?>
+    让我们试着显示上面数组中的某个值：
+    echo $sites['runoob'][0] . '地址为：' . $sites['runoob'][1];
+
+
+PHP date() 函数
+PHP date() 函数用于格式化时间/日期。
+PHP date() 函数
+    PHP date() 函数可把时间戳格式化为可读性更好的日期和时间。
+    Tip:时间戳是一个字符序列，表示一定的事件发生的日期/时间。
+    语法
+    string date ( string $format [, int $timestamp ] )
+    参数	描述
+    format	必需。规定时间戳的格式。
+    timestamp	可选。规定时间戳。默认是当前的日期和时间。
+PHP Date() - 格式化日期
+    date() 函数的第一个必需参数 format 规定了如何格式化日期/时间。
+
+    这里列出了一些可用的字符：
+
+    d - 代表月中的天 (01 - 31)
+    m - 代表月 (01 - 12)
+    Y - 代表年 (四位数)
+    如需了解 format 参数中可用的所有字符列表，请查阅我们的 PHP Date 参考手册，date() 函数。
+
+    可以在字母之间插入其他字符，比如 "/"、"." 或者 "-"，这样就可以增加附加格式了：
+
+    <?php
+    echo date("Y/m/d") . "<br>";
+    echo date("Y.m.d") . "<br>";
+    echo date("Y-m-d");
+    ?>
+    上面代码的输出如下所示：
+
+    2016/10/21
+    2016.10.21
+    2016-10-21
+
+PHP 包含文件
+PHP include 和 require 语句
+    在 PHP 中，您可以在服务器执行 PHP 文件之前在该文件中插入一个文件的内容。
+    include 和 require 语句用于在执行流中插入写在其他文件中的有用的代码。
+    include 和 require 除了处理错误的方式不同之外，在其他方面都是相同的：
+    require 生成一个致命错误（E_COMPILE_ERROR），在错误发生后脚本会停止执行。
+    include 生成一个警告（E_WARNING），在错误发生后脚本会继续执行。
+    因此，如果您希望继续执行，并向用户输出结果，即使包含文件已丢失，那么请使用 include。否则，在框架、CMS 或者复杂的 PHP 应用程序编程中，请始终使用 require 向执行流引用关键文件。这有助于提高应用程序的安全性和完整性，在某个关键文件意外丢失的情况下。
+    包含文件省去了大量的工作。这意味着您可以为所有网页创建标准页头、页脚或者菜单文件。然后，在页头需要更新时，您只需更新这个页头包含文件即可。
+语法
+    include 'filename';
+    或者
+    require 'filename';
+PHP include 和 require 语句
+    基础实例
+    假设您有一个标准的页头文件，名为 "header.php"。如需在页面中引用这个页头文件，请使用 include/require：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <?php include 'header.php'; ?>
+    <h1>欢迎来到我的主页!</h1>
+    <p>一些文本。</p>
+
+    </body>
+    </html>
+    实例 2
+实例 2
+    假设我们有一个在所有页面中使用的标准菜单文件。
+
+    "menu.php":
+
+    echo '<a href="/">主页</a>
+    <a href="/html">HTML 教程</a>
+    <a href="/php">PHP 教程</a>';
+    网站中的所有页面均应引用该菜单文件。以下是具体的做法：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <div class="leftmenu">
+    <?php include 'menu.php'; ?>
+    </div>
+    <h1>欢迎来到我的主页!</h1>
+    <p>一些文本。</p>
+
+    </body>
+    </html>
+
+PHP 文件处理
+fopen() 函数用于在 PHP 中打开文件。
+打开文件
+    fopen() 函数用于在 PHP 中打开文件。
+    此函数的第一个参数含有要打开的文件的名称，第二个参数规定了使用哪种模式来打开文件：
+    <html>
+    <body>
+    <?php
+    $file=fopen("welcome.txt","r");
+    ?>
+    </body>
+    </html>
+    文件可能通过下列模式来打开：
+    模式	描述
+    r	只读。在文件的开头开始。
+    r+	读/写。在文件的开头开始。
+    w	只写。打开并清空文件的内容；如果文件不存在，则创建新文件。
+    w+	读/写。打开并清空文件的内容；如果文件不存在，则创建新文件。
+    a	追加。打开并向文件末尾进行写操作，如果文件不存在，则创建新文件。
+    a+	读/追加。通过向文件末尾写内容，来保持文件内容。
+    x	只写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。
+    x+	读/写。创建新文件。如果文件已存在，则返回 FALSE 和一个错误。
+    注释：如果 fopen() 函数无法打开指定文件，则返回 0 (false)。
+    实例
+    如果 fopen() 函数不能打开指定的文件，下面的实例会生成一段消息：
+    <html>
+    <body>
+    <?php
+    $file=fopen("welcome.txt","r") or exit("Unable to open file!");
+    ?>
+    </body>
+    </html>
+关闭文件
+    fclose() 函数用于关闭打开的文件：
+    <?php
+    $file = fopen("test.txt","r");
+    //执行一些代码
+    fclose($file);
+    ?>
+检测文件末尾（EOF）
+    feof() 函数检测是否已到达文件末尾（EOF）。
+    在循环遍历未知长度的数据时，feof() 函数很有用。
+    注释：在 w 、a 和 x 模式下，您无法读取打开的文件！
+    if (feof($file)) echo "文件结尾";
+逐行读取文件
+    fgets() 函数用于从文件中逐行读取文件。
+    注释：在调用该函数之后，文件指针会移动到下一行。
+    实例
+    下面的实例逐行读取文件，直到文件末尾为止：
+    <?php
+    $file = fopen("welcome.txt", "r") or exit("无法打开文件!");
+    // 读取文件每一行，直到文件结尾
+    while(!feof($file))
+    {
+        echo fgets($file). "<br>";
+    }
+    fclose($file);
+    ?>
+逐字符读取文件
+    fgetc() 函数用于从文件中逐字符地读取文件。
+    注释：在调用该函数之后，文件指针会移动到下一个字符。
+    实例
+    下面的实例逐字符地读取文件，直到文件末尾为止：
+    <?php
+    $file=fopen("welcome.txt","r") or exit("无法打开文件!");
+    while (!feof($file))
+    {
+        echo fgetc($file);
+    }
+    fclose($file);
+    ?>
+
+
+PHP 文件上传
+    通过 PHP，可以把文件上传到服务器。
+    本章节实例在 test 项目下完成，目录结构为：
+    test
+    |-----upload             # 文件上传的目录
+    |-----form.html          # 表单文件
+    |-----upload_file.php    # php 上传代码
+创建一个文件上传表单
+    允许用户从表单上传文件是非常有用的。
+    请看下面这个供上传文件的 HTML 表单：
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+    <form action="upload_file.php" method="post" enctype="multipart/form-data">
+        <label for="file">文件名：</label>
+        <input type="file" name="file" id="file"><br>
+        <input type="submit" name="submit" value="提交">
+    </form>
+    </body>
+    </html>
+    将以上代码保存到 form.html 文件中。
+    有关上面的 HTML 表单的一些注意项列举如下：
+    <form> 标签的 enctype 属性规定了在提交表单时要使用哪种内容类型。在表单需要二进制数据时，比如文件内容，请使用 "multipart/form-data"。
+    <input> 标签的 type="file" 属性规定了应该把输入作为文件来处理。举例来说，当在浏览器中预览时，会看到输入框旁边有一个浏览按钮。
+    注释：允许用户上传文件是一个巨大的安全风险。请仅仅允许可信的用户执行文件上传操作。
+创建上传脚本
+    "upload_file.php" 文件含有供上传文件的代码：
+    <?php
+    if ($_FILES["file"]["error"] > 0)
+    {
+        echo "错误：" . $_FILES["file"]["error"] . "<br>";
+    }
+    else
+    {
+        echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+        echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+        echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+        echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
+    }
+    ?>
+    通过使用 PHP 的全局数组 $_FILES，你可以从客户计算机向远程服务器上传文件。
+
+    第一个参数是表单的 input name，第二个下标可以是 "name"、"type"、"size"、"tmp_name" 或 "error"。如下所示：
+
+    $_FILES["file"]["name"] - 上传文件的名称
+    $_FILES["file"]["type"] - 上传文件的类型
+    $_FILES["file"]["size"] - 上传文件的大小，以字节计
+    $_FILES["file"]["tmp_name"] - 存储在服务器的文件的临时副本的名称
+    $_FILES["file"]["error"] - 由文件上传导致的错误代码
+    这是一种非常简单文件上传方式。基于安全方面的考虑，您应当增加有关允许哪些用户上传文件的限制。
+上传限制
+    在这个脚本中，我们增加了对文件上传的限制。用户只能上传 .gif、.jpeg、.jpg、.png 文件，文件大小必须小于 200 kB：
+
+    <?php
+    // 允许上传的图片后缀
+    $allowedExts = array("gif", "jpeg", "jpg", "png");
+    $temp = explode(".", $_FILES["file"]["name"]);
+    $extension = end($temp);        // 获取文件后缀名
+    if ((($_FILES["file"]["type"] == "image/gif")
+    || ($_FILES["file"]["type"] == "image/jpeg")
+    || ($_FILES["file"]["type"] == "image/jpg")
+    || ($_FILES["file"]["type"] == "image/pjpeg")
+    || ($_FILES["file"]["type"] == "image/x-png")
+    || ($_FILES["file"]["type"] == "image/png"))
+    && ($_FILES["file"]["size"] < 204800)    // 小于 200 kb
+    && in_array($extension, $allowedExts))
+    {
+        if ($_FILES["file"]["error"] > 0)
+        {
+            echo "错误：: " . $_FILES["file"]["error"] . "<br>";
+        }
+        else
+        {
+            echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+            echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+            echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+            echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"];
+        }
+    }
+    else
+    {
+        echo "非法的文件格式";
+    }
+    ?>
+保存被上传的文件
+    上面的实例在服务器的 PHP 临时文件夹中创建了一个被上传文件的临时副本。
+
+    这个临时的副本文件会在脚本结束时消失。要保存被上传的文件，我们需要把它拷贝到另外的位置：
+
+    <?php
+    // 允许上传的图片后缀
+    $allowedExts = array("gif", "jpeg", "jpg", "png");
+    $temp = explode(".", $_FILES["file"]["name"]);
+    echo $_FILES["file"]["size"];
+    $extension = end($temp);     // 获取文件后缀名
+    if ((($_FILES["file"]["type"] == "image/gif")
+    || ($_FILES["file"]["type"] == "image/jpeg")
+    || ($_FILES["file"]["type"] == "image/jpg")
+    || ($_FILES["file"]["type"] == "image/pjpeg")
+    || ($_FILES["file"]["type"] == "image/x-png")
+    || ($_FILES["file"]["type"] == "image/png"))
+    && ($_FILES["file"]["size"] < 204800)   // 小于 200 kb
+    && in_array($extension, $allowedExts))
+    {
+        if ($_FILES["file"]["error"] > 0)
+        {
+            echo "错误：: " . $_FILES["file"]["error"] . "<br>";
+        }
+        else
+        {
+            echo "上传文件名: " . $_FILES["file"]["name"] . "<br>";
+            echo "文件类型: " . $_FILES["file"]["type"] . "<br>";
+            echo "文件大小: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
+            echo "文件临时存储的位置: " . $_FILES["file"]["tmp_name"] . "<br>";
+            
+            // 判断当前目录下的 upload 目录是否存在该文件
+            // 如果没有 upload 目录，你需要创建它，upload 目录权限为 777
+            if (file_exists("upload/" . $_FILES["file"]["name"]))
+            {
+                echo $_FILES["file"]["name"] . " 文件已经存在。 ";
+            }
+            else
+            {
+                // 如果 upload 目录不存在该文件则将文件上传到 upload 目录下
+                move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+                echo "文件存储在: " . "upload/" . $_FILES["file"]["name"];
+            }
+        }
+    }
+    else
+    {
+        echo "非法的文件格式";
+    }
+    ?>
+    上面的脚本检测了文件是否已存在，如果不存在，则把文件拷贝到名为 "upload" 的目录下。
+
+
+PHP Cookie
+cookie 常用于识别用户。
+Cookie 是什么？
+cookie 常用于识别用户。cookie 是一种服务器留在用户计算机上的小文件。每当同一台计算机通过浏览器请求页面时，这台计算机将会发送 cookie。通过 PHP，您能够创建并取回 cookie 的值。
+如何创建 Cookie？
+    setcookie() 函数用于设置 cookie。
+    注释：setcookie() 函数必须位于 <html> 标签之前。
+    实例 1
+    在下面的例子中，我们将创建名为 "user" 的 cookie，并为它赋值 "runoob"。我们也规定了此 cookie 在一小时后过期：
+    <?php
+    setcookie("user", "runoob", time()+3600);
+    ?>
+    <html>
+    .....
+    注释：在发送 cookie 时，cookie 的值会自动进行 URL 编码，在取回时进行自动解码。（为防止 URL 编码，请使用 setrawcookie() 取而代之。）
+    实例 2
+    您还可以通过另一种方式设置 cookie 的过期时间。这也许比使用秒表示的方式简单。
+
+    <?php
+    $expire=time()+60*60*24*30;
+    setcookie("user", "runoob", $expire);
+    ?>
+
+    <html>
+    .....
+    在上面的实例中，过期时间被设置为一个月（60 秒 * 60 分 * 24 小时 * 30 天）。
+如何取回 Cookie 的值？
+    PHP 的 $_COOKIE 变量用于取回 cookie 的值。
+
+    在下面的实例中，我们取回了名为 "user" 的 cookie 的值，并把它显示在了页面上：
+
+    <?php
+    // 输出 cookie 值
+    echo $_COOKIE["user"];
+
+    // 查看所有 cookie
+    print_r($_COOKIE);
+    ?>
+    在下面的实例中，我们使用 isset() 函数来确认是否已设置了 cookie：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <?php
+    if (isset($_COOKIE["user"]))
+        echo "欢迎 " . $_COOKIE["user"] . "!<br>";
+    else
+        echo "普通访客!<br>";
+    ?>
+
+    </body>
+    </html>
+如何删除 Cookie？
+    当删除 cookie 时，您应当使过期日期变更为过去的时间点。
+
+    删除的实例：
+
+    <?php
+    // 设置 cookie 过期时间为过去 1 小时
+    setcookie("user", "", time()-3600);
+    ?>
+如果浏览器不支持 Cookie 该怎么办？
+    如果您的应用程序需要与不支持 cookie 的浏览器打交道，那么您不得不使用其他的办法在您的应用程序中的页面之间传递信息。一种方式是通过表单传递数据（有关表单和用户输入的内容，在本教程的前面章节中我们已经介绍过了）。
+
+
+PHP Session
+PHP session 变量用于存储关于用户会话（session）的信息，或者更改用户会话（session）的设置。Session 变量存储单一用户的信息，并且对于应用程序中的所有页面都是可用的。
+PHP Session 变量
+    您在计算机上操作某个应用程序时，您打开它，做些更改，然后关闭它。这很像一次对话（Session）。计算机知道您是谁。它清楚您在何时打开和关闭应用程序。然而，在因特网上问题出现了：由于 HTTP 地址无法保持状态，Web 服务器并不知道您是谁以及您做了什么。
+    PHP session 解决了这个问题，它通过在服务器上存储用户信息以便随后使用（比如用户名称、购买商品等）。然而，会话信息是临时的，在用户离开网站后将被删除。如果您需要永久存储信息，可以把数据存储在数据库中。
+    Session 的工作机制是：为每个访客创建一个唯一的 id (UID)，并基于这个 UID 来存储变量。UID 存储在 cookie 中，或者通过 URL 进行传导。
+开始 PHP Session
+    在您把用户信息存储到 PHP session 中之前，首先必须启动会话。
+    注释：session_start() 函数必须位于 <html> 标签之前：
+
+    实例
+    <?php session_start(); ?>
+    
+    <html>
+    <body>
+    
+    </body>
+    </html>
+    上面的代码会向服务器注册用户的会话，以便您可以开始保存用户信息，同时会为用户会话分配一个 UID
+存储 Session 变量
+    存储和取回 session 变量的正确方法是使用 PHP $_SESSION 变量：
+
+    实例
+    <?php
+    session_start();
+    // 存储 session 数据
+    $_SESSION['views']=1;
+    ?>
+    
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+    
+    <?php
+    // 检索 session 数据
+    echo "浏览量：". $_SESSION['views'];
+    ?>
+    
+    </body>
+    </html>
+    在下面的实例中，我们创建了一个简单的 page-view 计数器。isset() 函数检测是否已设置 "views" 变量。如果已设置 "views" 变量，我们累加计数器。如果 "views" 不存在，则创建 "views" 变量，并把它设置为 1：
+
+    实例
+    <?php
+    session_start();
+    
+    if(isset($_SESSION['views']))
+    {
+        $_SESSION['views']=$_SESSION['views']+1;
+    }
+    else
+    {
+        $_SESSION['views']=1;
+    }
+    echo "浏览量：". $_SESSION['views'];
+    ?>
+销毁 Session
+    如果您希望删除某些 session 数据，可以使用 unset() 或 session_destroy() 函数。
+
+    unset() 函数用于释放指定的 session 变量：
+
+    实例
+    <?php
+    session_start();
+    if(isset($_SESSION['views']))
+    {
+        unset($_SESSION['views']);
+    }
+    ?>
+    您也可以通过调用 session_destroy() 函数彻底销毁 session：
+
+    实例
+    <?php
+    session_destroy();
+    ?>
+    注释：session_destroy() 将重置 session，您将失去所有已存储的 session 数据。
+PHP 发送电子邮件
+PHP 允许您从脚本直接发送电子邮件。
+HP mail() 函数
+    PHP mail() 函数用于从脚本中发送电子邮件。
+    语法
+    mail(to,subject,message,headers,parameters)
+    参数	描述
+    to	必需。规定 email 接收者。
+    subject	必需。规定 email 的主题。注释：该参数不能包含任何新行字符。
+    message	必需。定义要发送的消息。应使用 LF (\n) 来分隔各行。每行应该限制在 70 个字符内。
+    headers	可选。规定附加的标题，比如 From、Cc 和 Bcc。应当使用 CRLF (\r\n) 分隔附加的标题。
+    parameters	可选。对邮件发送程序规定额外的参数。
+    注释：PHP 运行邮件函数需要一个已安装且正在运行的邮件系统(如：sendmail、postfix、qmail等)。所用的程序通过在 php.ini 文件中的配置设置进行定义。请在我们的 PHP Mail 参考手册 阅读更多内容。
+PHP 简易 E-Mail
+    通过 PHP 发送电子邮件的最简单的方式是发送一封文本 email。
+
+    在下面的实例中，我们首先声明变量($to, $subject, $message, $from, $headers)，然后我们在 mail() 函数中使用这些变量来发送了一封 E-mail：
+
+    <?php
+    $to = "someone@example.com";         // 邮件接收者
+    $subject = "参数邮件";                // 邮件标题
+    $message = "Hello! 这是邮件的内容。";  // 邮件正文
+    $from = "someonelse@example.com";   // 邮件发送者
+    $headers = "From:" . $from;         // 头部信息设置
+    mail($to,$subject,$message,$headers);
+    echo "邮件已发送";
+    ?>
+PHP Mail 表单
+    通过 PHP，您能够在自己的站点制作一个反馈表单。下面的实例向指定的 e-mail 地址发送了一条文本消息：
+
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+
+    <?php
+    if (isset($_REQUEST['email'])) { // 如果接收到邮箱参数则发送邮件
+        // 发送邮件
+        $email = $_REQUEST['email'] ;
+        $subject = $_REQUEST['subject'] ;
+        $message = $_REQUEST['message'] ;
+        mail("someone@example.com", $subject,
+        $message, "From:" . $email);
+        echo "邮件发送成功";
+    } else { // 如果没有邮箱参数则显示表单
+        echo "<form method='post' action='mailform.php'>
+        Email: <input name='email' type='text'><br>
+        Subject: <input name='subject' type='text'><br>
+        Message:<br>
+        <textarea name='message' rows='15' cols='40'>
+        </textarea><br>
+        <input type='submit'>
+        </form>";
+    }
+    ?>
+
+    </body>
+    </html>
+    实例解释：
+    首先，检查是否填写了邮件输入框
+    如果未填写（比如在页面被首次访问时），输出 HTML 表单
+    如果已填写（在表单被填写后），从表单发送电子邮件
+    当填写完表单点击提交按钮后，页面重新载入，可以看到邮件输入被重置，同时显示邮件发送成功的消息
+    注释：这个简易发送 e-mail 不安全，在本教程的下一章中，您将阅读到更多关于电子邮件脚本中的安全隐患，我们将为您讲解如何验证用户输入使它更安全。
+
+PHP Secure E-mails
+在上一节中的 PHP e-mail 脚本中，存在着一个漏洞。
+    首先，请看上一章中的 PHP 代码：
+    以上代码存在的问题是，未经授权的用户可通过输入表单在邮件头部插入数据。
+
+    假如用户在表单中的输入框内加入如下文本到电子邮件中，会出现什么情况呢？
+
+    someone@example.com%0ACc:person2@example.com
+    %0ABcc:person3@example.com,person3@example.com,
+    anotherperson4@example.com,person5@example.com
+    %0ABTo:person6@example.com
+    与往常一样，mail() 函数把上面的文本放入邮件头部，那么现在头部有了额外的 Cc:、Bcc: 和 To: 字段。当用户点击提交按钮时，这封 e-mail 会被发送到上面所有的地址！
+PHP 防止 E-mail 注入
+    防止 e-mail 注入的最好方法是对输入进行验证。
+        下面的代码与上一章中的类似，不过这里我们已经增加了检测表单中 email 字段的输入验证程序：
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    </head>
+    <body>
+    <?php
+    function spamcheck($field)
+    {
+        // filter_var() 过滤 e-mail
+        // 使用 FILTER_SANITIZE_EMAIL
+        $field=filter_var($field, FILTER_SANITIZE_EMAIL);
+
+        //filter_var() 过滤 e-mail
+        // 使用 FILTER_VALIDATE_EMAIL
+        if(filter_var($field, FILTER_VALIDATE_EMAIL))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    if (isset($_REQUEST['email']))
+    {
+        // 如果接收到邮箱参数则发送邮件
+
+        // 判断邮箱是否合法
+        $mailcheck = spamcheck($_REQUEST['email']);
+        if ($mailcheck==FALSE)
+        {
+            echo "非法输入";
+        }
+        else
+        {    
+            // 发送邮件
+            $email = $_REQUEST['email'] ;
+            $subject = $_REQUEST['subject'] ;
+            $message = $_REQUEST['message'] ;
+            mail("someone@example.com", "Subject: $subject",
+            $message, "From: $email" );
+            echo "Thank you for using our mail form";
+        }
+    }
+    else
+    { 
+        // 如果没有邮箱参数则显示表单
+        echo "<form method='post' action='mailform.php'>
+        Email: <input name='email' type='text'><br>
+        Subject: <input name='subject' type='text'><br>
+        Message:<br>
+        <textarea name='message' rows='15' cols='40'>
+        </textarea><br>
+        <input type='submit'>
+        </form>";
+    }
+    ?>
+
+    </body>
+    </html>
+    在上面的代码中，我们使用了 PHP 过滤器来对输入进行验证：
+        FILTER_SANITIZE_EMAIL 过滤器从字符串中删除电子邮件的非法字符
+        FILTER_VALIDATE_EMAIL 过滤器验证电子邮件地址的值
+
+
+PHP 错误处理
+在 PHP 中，默认的错误处理很简单。一条错误消息会被发送到浏览器，这条消息带有文件名、行号以及描述错误的消息。
+PHP 错误处理
+    在创建脚本和 Web 应用程序时，错误处理是一个重要的部分。如果您的代码缺少错误检测编码，那么程序看上去很不专业，也为安全风险敞开了大门。
+
+    本教程介绍了 PHP 中一些最为重要的错误检测方法。
+
+    我们将为您讲解不同的错误处理方法：
+
+    简单的 "die()" 语句
+    自定义错误和错误触发器
+    错误报告
+基本的错误处理：使用 die() 函数
+    第一个实例展示了一个打开文本文件的简单脚本：
+
+    <?php
+    $file=fopen("welcome.txt","r");
+    ?>
+    如果文件不存在，您会得到类似这样的错误：
+
+    Warning: fopen(welcome.txt) [function.fopen]: failed to open stream:
+    No such file or directory in /www/runoob/test/test.php on line 2
+    为了避免用户得到类似上面的错误消息，我们在访问文件之前检测该文件是否存在：
+    <?php
+    if(!file_exists("welcome.txt"))
+    {
+        die("文件不存在");
+    }
+    else
+    {
+        $file=fopen("welcome.txt","r");
+    }
+    ?>
+    现在，如果文件不存在，您会得到类似这样的错误消息：
+
+    文件不存在
+    相比之前的代码，上面的代码更有效，这是由于它采用了一个简单的错误处理机制在错误之后终止了脚本。
+    然而，简单地终止脚本并不总是恰当的方式。让我们研究一下用于处理错误的备选的 PHP 函数。
+创建自定义错误处理器
+    创建一个自定义的错误处理器非常简单。我们很简单地创建了一个专用函数，可以在 PHP 中发生错误时调用该函数。
+    该函数必须有能力处理至少两个参数 (error level 和 error message)，但是可以接受最多五个参数（可选的：file, line-number 和 error context）：  
+    语法
+    error_function(error_level,error_message,
+    error_file,error_line,error_context)
+    参数	        描述
+    error_level	必需。为用户定义的错误规定错误报告级别。必须是一个数字。参见下面的表格：错误报告级别。
+    error_message	必需。为用户定义的错误规定错误消息。
+    error_file	可选。规定错误发生的文件名。
+    error_line	可选。规定错误发生的行号。
+    error_context	可选。规定一个数组，包含了当错误发生时在用的每个变量以及它们的值。
+错误报告级别
+    这些错误报告级别是用户自定义的错误处理程序处理的不同类型的错误：
+
+    值	常量	描述
+    2	E_WARNING	非致命的 run-time 错误。不暂停脚本执行。
+    8	E_NOTICE	run-time 通知。在脚本发现可能有错误时发生，但也可能在脚本正常运行时发生。
+    256	E_USER_ERROR	致命的用户生成的错误。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_ERROR。
+    512	E_USER_WARNING	非致命的用户生成的警告。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_WARNING。
+    1024	E_USER_NOTICE	用户生成的通知。这类似于程序员使用 PHP 函数 trigger_error() 设置的 E_NOTICE。
+    4096	E_RECOVERABLE_ERROR	可捕获的致命错误。类似 E_ERROR，但可被用户定义的处理程序捕获。（参见 set_error_handler()）
+    8191	E_ALL	所有错误和警告。（在 PHP 5.4 中，E_STRICT 成为 E_ALL 的一部分）
+    现在，让我们创建一个处理错误的函数：
+
+    function customError($errno, $errstr)
+    {
+        echo "<b>Error:</b> [$errno] $errstr<br>";
+        echo "脚本结束";
+        die();
+    }
+    上面的代码是一个简单的错误处理函数。当它被触发时，它会取得错误级别和错误消息。然后它会输出错误级别和消息，并终止脚本。
+    现在，我们已经创建了一个错误处理函数，我们需要确定在何时触发该函数。设置错误处理程序
+设置错误处理程序   
+    PHP 的默认错误处理程序是内建的错误处理程序。我们打算把上面的函数改造为脚本运行期间的默认错误处理程序。
+    可以修改错误处理程序，使其仅应用到某些错误，这样脚本就能以不同的方式来处理不同的错误。然而，在本例中，我们打算针对所有错误来使用我们自定义的错误处理程序：
+    set_error_handler("customError");
+    由于我们希望我们的自定义函数能处理所有错误，set_error_handler() 仅需要一个参数，可以添加第二个参数来规定错误级别。
+    实例
+    通过尝试输出不存在的变量，来测试这个错误处理程序：
+    <?php
+    // 错误处理函数
+    function customError($errno, $errstr)
+    {
+        echo "<b>Error:</b> [$errno] $errstr";
+    }
+    // 设置错误处理函数
+    set_error_handler("customError");
+    // 触发错误
+    echo($test);
+    ?>
+    以上代码的输出如下所示：
+    Error: [8] Undefined variable: test
+触发错误
+    在脚本中用户输入数据的位置，当用户的输入无效时触发错误是很有用的。在 PHP 中，这个任务由 trigger_error() 函数完成。
+
+    实例
+    在本例中，如果 "test" 变量大于 "1"，就会发生错误：
+
+    <?php
+    $test=2;
+    if ($test>1)
+    {
+        trigger_error("变量值必须小于等于 1");
+    }
+    ?>
+    以上代码的输出如下所示：
+
+    Notice: 变量值必须小于等于 1
+    in /www/test/runoob.php on line 5
+    您可以在脚本中任何位置触发错误，通过添加的第二个参数，您能够规定所触发的错误类型。
+
+    可能的错误类型：
+
+        E_USER_ERROR - 致命的用户生成的 run-time 错误。错误无法恢复。脚本执行被中断。
+        E_USER_WARNING - 非致命的用户生成的 run-time 警告。脚本执行不被中断。
+        E_USER_NOTICE - 默认。用户生成的 run-time 通知。在脚本发现可能有错误时发生，但也可能在脚本正常运行时发生。
+    实例
+    在本例中，如果 "test" 变量大于 "1"，则发生 E_USER_WARNING 错误。如果发生了 E_USER_WARNING，我们将使用我们自定义的错误处理程序并结束脚本：
+
+    <?php
+    // 错误处理函数
+    function customError($errno, $errstr)
+    {
+        echo "<b>Error:</b> [$errno] $errstr<br>";
+        echo "脚本结束";
+        die();
+    }
+
+    // 设置错误处理函数
+    set_error_handler("customError",E_USER_WARNING);
+
+    // 触发错误
+    $test=2;
+    if ($test>1)
+    {
+        trigger_error("变量值必须小于等于 1",E_USER_WARNING);
+    }
+    ?>
+    以上代码的输出如下所示：
+
+    Error: [512] 变量值必须小于等于 1
+    脚本结束
+    现在，我们已经学习了如何创建自己的 error，以及如何触发它们，接下来我们研究一下错误记录。
+错误记录
+    在默认的情况下，根据在 php.ini 中的 error_log 配置，PHP 向服务器的记录系统或文件发送错误记录。通过使用 error_log() 函数，您可以向指定的文件或远程目的地发送错误记录。
+    通过电子邮件向您自己发送错误消息，是一种获得指定错误的通知的好办法。
+通过 E-Mail 发送错误消息
+    在下面的例子中，如果特定的错误发生，我们将发送带有错误消息的电子邮件，并结束脚本：
+
+    <?php
+    // 错误处理函数
+    function customError($errno, $errstr)
+    {
+        echo "<b>Error:</b> [$errno] $errstr<br>";
+        echo "已通知网站管理员";
+        error_log("Error: [$errno] $errstr",1,
+        "someone@example.com","From: webmaster@example.com");
+    }
+
+    // 设置错误处理函数
+    set_error_handler("customError",E_USER_WARNING);
+
+    // 触发错误
+    $test=2;
+    if ($test>1)
+    {
+        trigger_error("变量值必须小于等于 1",E_USER_WARNING);
+    }
+    ?>
+    以上代码的输出如下所示：
+
+    Error: [512] 变量值必须小于等于 1
+    已通知网站管理员
+    接收自以上代码的邮件如下所示：
+
+    Error: [512] 变量值必须小于等于 1
+    这个方法不适合所有的错误。常规错误应当通过使用默认的 PHP 记录系统在服务器上进行记录。
+
+
+PHP 异常处理
+异常用于在指定的错误发生时改变脚本的正常流程。
+异常是什么
+    PHP 5 提供了一种新的面向对象的错误处理方法。
+
+    异常处理用于在指定的错误（异常）情况发生时改变脚本的正常流程。这种情况称为异常。
+
+    当异常被触发时，通常会发生：
+        当前代码状态被保存
+        代码执行被切换到预定义（自定义）的异常处理器函数
+        根据情况，处理器也许会从保存的代码状态重新开始执行代码，终止脚本执行，或从代码中另外的位置继续执行脚本
+    我们将展示不同的错误处理方法：
+        异常的基本使用
+        创建自定义的异常处理器
+        多个异常
+        重新抛出异常
+        设置顶层异常处理器
+    注释：异常应该仅仅在错误情况下使用，而不应该用于在一个指定的点跳转到代码的另一个位置。
+异常的基本使用
+    当异常被抛出时，其后的代码不会继续执行，PHP 会尝试查找匹配的 "catch" 代码块。
+    如果异常没有被捕获，而且又没用使用 set_exception_handler() 作相应的处理的话，那么将发生一个严重的错误（致命错误），并且输出 "Uncaught Exception" （未捕获异常）的错误消息。
+    让我们尝试抛出一个异常，同时不去捕获它：
+    <?php
+    // 创建一个有异常处理的函数
+    function checkNum($number)
+    {
+        if($number>1)
+        {
+            throw new Exception("Value must be 1 or below");
+        }
+        return true;
+    }
+    // 触发异常
+    checkNum(2);
+    ?>
+    上面的代码会得到类似这样的一个错误：
+    Fatal error: Uncaught exception 'Exception' with message 'Value must be 1 or below' in /www/runoob/test/test.php:7 Stack trace: #0 /www/runoob/test/test.php(13): checkNum(2) #1 {main} thrown in /www/runoob/test/test.php on line 7
+Try、throw 和 catch
+    要避免上面实例中出现的错误，我们需要创建适当的代码来处理异常。
+
+    适当的处理异常代码应该包括：
+
+        Try - 使用异常的函数应该位于 "try" 代码块内。如果没有触发异常，则代码将照常继续执行。但是如果异常被触发，会抛出一个异常。
+        Throw - 里规定如何触发异常。每一个 "throw" 必须对应至少一个 "catch"。
+        Catch - "catch" 代码块会捕获异常，并创建一个包含异常信息的对象。
+    让我们触发一个异常：
+
+    <?php
+    // 创建一个有异常处理的函数
+    function checkNum($number)
+    {
+        if($number>1)
+        {
+            throw new Exception("变量值必须小于等于 1");
+        }
+            return true;
+    }
+        
+    // 在 try 块 触发异常
+    try
+    {
+        checkNum(2);
+        // 如果抛出异常，以下文本不会输出
+        echo '如果输出该内容，说明 $number 变量';
+    }
+    // 捕获异常
+    catch(Exception $e)
+    {
+        echo 'Message: ' .$e->getMessage();
+    }
+    ?>
+    上面代码将得到类似这样一个错误：
+
+    Message: 变量值必须小于等于 1
+    实例解释：
+    上面的代码抛出了一个异常，并捕获了它：
+
+        创建 checkNum() 函数。它检测数字是否大于 1。如果是，则抛出一个异常。
+        在 "try" 代码块中调用 checkNum() 函数。
+        checkNum() 函数中的异常被抛出。
+        "catch" 代码块接收到该异常，并创建一个包含异常信息的对象 ($e)。
+        通过从这个 exception 对象调用 $e->getMessage()，输出来自该异常的错误消息。
+    然而，为了遵循 "每个 throw 必须对应一个 catch" 的原则，可以设置一个顶层的异常处理器来处理漏掉的错误
+创建一个自定义的 Exception 类
+    创建自定义的异常处理程序非常简单。我们简单地创建了一个专门的类，当 PHP 中发生异常时，可调用其函数。该类必须是 exception 类的一个扩展。
+
+    这个自定义的 customException 类继承了 PHP 的 exception 类的所有属性，您可向其添加自定义的函数。
+
+    我们开始创建 customException 类：
+
+    <?php
+    class customException extends Exception
+    {
+        public function errorMessage()
+        {
+            // 错误信息
+            $errorMsg = '错误行号 '.$this->getLine().' in '.$this->getFile()
+            .': <b>'.$this->getMessage().'</b> 不是一个合法的 E-Mail 地址';
+            return $errorMsg;
+        }
+    }
+    
+    $email = "someone@example...com";
+    
+    try
+    {
+        // 检测邮箱
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE)
+        {
+            // 如果是个不合法的邮箱地址，抛出异常
+            throw new customException($email);
+        }
+    }
+    
+    catch (customException $e)
+    {
+    //display custom message
+    echo $e->errorMessage();
+    }
+    ?>
+    这个新的类是旧的 exception 类的副本，外加 errorMessage() 函数。正因为它是旧类的副本，因此它从旧类继承了属性和方法，我们可以使用 exception 类的方法，比如 getLine()、getFile() 和 getMessage()。
+
+    实例解释：
+    上面的代码抛出了一个异常，并通过一个自定义的 exception 类来捕获它：
+
+    customException() 类是作为旧的 exception 类的一个扩展来创建的。这样它就继承了旧的 exception 类的所有属性和方法。
+    创建 errorMessage() 函数。如果 e-mail 地址不合法，则该函数返回一条错误消息。
+    把 $email 变量设置为不合法的 e-mail 地址字符串。
+    执行 "try" 代码块，由于 e-mail 地址不合法，因此抛出一个异常。
+    "catch" 代码块捕获异常，并显示错误消息。
+多个异常
+    可以为一段脚本使用多个异常，来检测多种情况。
+
+    可以使用多个 if..else 代码块，或一个 switch 代码块，或者嵌套多个异常。这些异常能够使用不同的 exception 类，并返回不同的错误消息：
+
+    <?php
+    class customException extends Exception
+    {
+        public function errorMessage()
+        {
+            // 错误信息
+            $errorMsg = '错误行号 '.$this->getLine().' in '.$this->getFile()
+            .': <b>'.$this->getMessage().'</b> 不是一个合法的 E-Mail 地址';
+            return $errorMsg;
+        }
+    }
+    
+    $email = "someone@example.com";
+    
+    try
+    {
+        // 检测邮箱
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE)
+        {
+            // 如果是个不合法的邮箱地址，抛出异常
+            throw new customException($email);
+        }
+        // 检测 "example" 是否在邮箱地址中
+        if(strpos($email, "example") !== FALSE)
+        {
+            throw new Exception("$email 是 example 邮箱");
+        }
+    }
+    catch (customException $e)
+    {
+        echo $e->errorMessage();
+    }
+    catch(Exception $e)
+    {
+        echo $e->getMessage();
+    }
+    ?>
+    实例解释：
+    上面的代码测试了两种条件，如果其中任何一个条件不成立，则抛出一个异常：
+        customException() 类是作为旧的 exception 类的一个扩展来创建的。这样它就继承了旧的 exception 类的所有属性和方法。
+        创建 errorMessage() 函数。如果 e-mail 地址不合法，则该函数返回一个错误消息。
+        把 $email 变量设置为一个字符串，该字符串是一个有效的 e-mail 地址，但包含字符串 "example"。
+        执行 "try" 代码块，在第一个条件下，不会抛出异常。
+        由于 e-mail 含有字符串 "example"，第二个条件会触发异常。
+        "catch" 代码块会捕获异常，并显示恰当的错误消息。
+    如果 customException 类抛出了异常，但没有捕获 customException，仅仅捕获了 base exception，则在那里处理异常。
+重新抛出异常
+    有时，当异常被抛出时，您也许希望以不同于标准的方式对它进行处理。可以在一个 "catch" 代码块中再次抛出异常。
+
+    脚本应该对用户隐藏系统错误。对程序员来说，系统错误也许很重要，但是用户对它们并不感兴趣。为了让用户更容易使用，您可以再次抛出带有对用户比较友好的消息的异常：
+
+    <?php
+    class customException extends Exception
+    {
+        public function errorMessage()
+        {
+            // 错误信息
+            $errorMsg = $this->getMessage().' 不是一个合法的 E-Mail 地址。';
+            return $errorMsg;
+        }
+    }
+    
+    $email = "someone@example.com";
+    
+    try
+    {
+        try
+        {
+            // 检测 "example" 是否在邮箱地址中
+            if(strpos($email, "example") !== FALSE)
+            {
+                // 如果是个不合法的邮箱地址，抛出异常
+                throw new Exception($email);
+            }
+        }
+        catch(Exception $e)
+        {
+            // 重新抛出异常
+            throw new customException($email);
+        }
+    }
+    catch (customException $e)
+    {
+        // 显示自定义信息
+        echo $e->errorMessage();
+    }
+    ?>
+    实例解释：
+    上面的代码检测在邮件地址中是否含有字符串 "example"。如果有，则再次抛出异常：
+
+    customException() 类是作为旧的 exception 类的一个扩展来创建的。这样它就继承了旧的 exception 类的所有属性和方法。
+    创建 errorMessage() 函数。如果 e-mail 地址不合法，则该函数返回一个错误消息。
+    把 $email 变量设置为一个字符串，该字符串是一个有效的 e-mail 地址，但包含字符串 "example"。
+    "try" 代码块包含另一个 "try" 代码块，这样就可以再次抛出异常。
+    由于 e-mail 包含字符串 "example"，因此触发异常。
+    "catch" 代码块捕获到该异常，并重新抛出 "customException"。
+    捕获到 "customException"，并显示一条错误消息。
+    如果在当前的 "try" 代码块中异常没有被捕获，则它将在更高层级上查找 catch 代码块。
+设置顶层异常处理器
+    set_exception_handler() 函数可设置处理所有未捕获异常的用户定义函数。
+
+    <?php
+    function myException($exception)
+    {
+        echo "<b>Exception:</b> " , $exception->getMessage();
+    }
+    
+    set_exception_handler('myException');
+    
+    throw new Exception('Uncaught Exception occurred');
+    ?>
+    以上代码的输出如下所示：
+
+    Exception: Uncaught Exception occurred
+    在上面的代码中，不存在 "catch" 代码块，而是触发顶层的异常处理程序。应该使用此函数来捕获所有未被捕获的异常。
+
+异常的规则
+    需要进行异常处理的代码应该放入 try 代码块内，以便捕获潜在的异常。
+    每个 try 或 throw 代码块必须至少拥有一个对应的 catch 代码块。
+    使用多个 catch 代码块可以捕获不同种类的异常。
+    可以在 try 代码块内的 catch 代码块中抛出（再次抛出）异常。
+    简而言之：如果抛出了异常，就必须捕获它。  
+
+
+PHP 过滤器
+PHP 过滤器用于验证和过滤来自非安全来源的数据，比如用户的输入。
+什么是 PHP 过滤器？
+    PHP 过滤器用于验证和过滤来自非安全来源的数据。
+    测试、验证和过滤用户输入或自定义数据是任何 Web 应用程序的重要组成部分。
+    PHP 的过滤器扩展的设计目的是使数据过滤更轻松快捷。
+为什么使用过滤器？
+    几乎所有的 Web 应用程序都依赖外部的输入。这些数据通常来自用户或其他应用程序（比如 web 服务）。通过使用过滤器，您能够确保应用程序获得正确的输入类型。
+    您应该始终对外部数据进行过滤！
+    输入过滤是最重要的应用程序安全课题之一。
+    什么是外部数据？
+        来自表单的输入数据
+        Cookies
+        Web services data
+        服务器变量
+        数据库查询结果
+函数和过滤器
+    如需过滤变量，请使用下面的过滤器函数之一：
+
+        filter_var() - 通过一个指定的过滤器来过滤单一的变量
+        filter_var_array() - 通过相同的或不同的过滤器来过滤多个变量
+        filter_input - 获取一个输入变量，并对它进行过滤
+        filter_input_array - 获取多个输入变量，并通过相同的或不同的过滤器对它们进行过滤
+    在下面的实例中，我们用 filter_var() 函数验证了一个整数：
+
+    实例
+    <?php
+    $int = 123;
+    
+    if(!filter_var($int, FILTER_VALIDATE_INT))
+    {
+        echo("不是一个合法的整数");
+    }
+    else
+    {
+        echo("是个合法的整数");
+    }
+    ?>
+
+    上面的代码使用了 "FILTER_VALIDATE_INT" 过滤器来过滤变量。由于这个整数是合法的，因此上面的代码将输出：
+    如果我们尝试使用一个非整数的变量（比如 "123abc"），则将输出："Integer is not valid"。
+    如需查看完整的函数和过滤器列表，请访问我们的 PHP Filter 参考手册。
+Validating 和 Sanitizing
+    有两种过滤器：
+    Validating 过滤器：
+        用于验证用户输入
+        严格的格式规则（比如 URL 或 E-Mail 验证）
+        如果成功则返回预期的类型，如果失败则返回 FALSE
+    Sanitizing 过滤器：
+        用于允许或禁止字符串中指定的字符
+        无数据格式规则
+        始终返回字符串
+选项和标志
+    选项``和标志用于向指定的过滤器添加额外的过滤选项。
+
+    不同的过滤器有不同的选项和标志。
+
+    在下面的实例中，我们用 filter_var() 和 "min_range" 以及 "max_range" 选项验证了一个整数：
+
+    实例
+    <?php
+    $var=300;
+    
+    $int_options = array(
+        "options"=>array
+        (
+            "min_range"=>0,
+            "max_range"=>256
+        )
+    );
+    
+    if(!filter_var($var, FILTER_VALIDATE_INT, $int_options))
+    {
+        echo("不是一个合法的整数");
+    }
+    else
+    {
+        echo("是个合法的整数");
+    }
+    ?>
+
+    就像上面的代码一样，选项必须放入一个名为 "options" 的相关数组中。如果使用标志，则不需在数组内。
+
+    由于整数是 "300"，它不在指定的范围内，以上代码的输出将是：
+
+    不是一个合法的整数
+    如需查看完整的函数和过滤器列表，请访问我们的 PHP Filter 参考手册。您可以看到每个过滤器的可用选项和标志。
+验证输入
+    让我们试着验证来自表单的输入。
+
+    我们需要做的第一件事情是确认是否存在我们正在查找的输入数据。
+
+    然后我们用 filter_input() 函数过滤输入的数据。
+
+    在下面的实例中，输入变量 "email" 被传到 PHP 页面：
+
+    实例
+    <?php
+    if(!filter_has_var(INPUT_GET, "email"))
+    {
+        echo("没有 email 参数");
+    }
+    else
+    {
+        if (!filter_input(INPUT_GET, "email", FILTER_VALIDATE_EMAIL))
+        {
+            echo "不是一个合法的 E-Mail";
+        }
+        else
+        {
+            echo "是一个合法的 E-Mail";
+        }
+    }
+    ?>
+    实例解释
+    上面的实例有一个通过 "GET" 方法传送的输入变量 (email)：
+
+    检测是否存在 "GET" 类型的 "email" 输入变量
+    如果存在输入变量，检测它是否是有效的 e-mail 地址
+净化输入
+    让我们试着清理一下从表单传来的 URL。
+    首先，我们要确认是否存在我们正在查找的输入数据。
+    然后，我们用 filter_input() 函数来净化输入数据。
+    在下面的实例中，输入变量 "url" 被传到 PHP 页面：
+    <?php
+    if(!filter_has_var(INPUT_GET, "url"))
+    {
+        echo("没有 url 参数");
+    }
+    else
+    {
+        $url = filter_input(INPUT_GET, 
+        "url", FILTER_SANITIZE_URL);
+        echo $url;
+    }
+    ?>
+    实例解释
+    上面的实例有一个通过 "GET" 方法传送的输入变量 (url)：
+    检测是否存在 "GET" 类型的 "url" 输入变量
+    如果存在此输入变量，对其进行净化（删除非法字符），并将其存储在 $url 变量中
+    假如输入变量是一个类似这样的字符串："http://www.ruåånoøøob.com/"，则净化后的 $url 变量如下所示
+    实例解释
+    上面的实例有一个通过 "GET" 方法传送的输入变量 (url)：
+
+    检测是否存在 "GET" 类型的 "url" 输入变量
+    如果存在此输入变量，对其进行净化（删除非法字符），并将其存储在 $url 变量中
+    假如输入变量是一个类似这样的字符串："http://www.ruåånoøøob.com/"，则净化后的 $url 变量如下所示：
+过滤多个输入
+    表单通常由多个输入字段组成。为了避免对 filter_var 或 filter_input 函数重复调用，我们可以使用 filter_var_array 或 the filter_input_array 函数。
+
+    在本例中，我们使用 filter_input_array() 函数来过滤三个 GET 变量。接收到的 GET 变量是一个名字、一个年龄以及一个 e-mail 地址：
+
+    实例
+    <?php
+    $filters = array
+    (
+        "name" => array
+        (
+            "filter"=>FILTER_SANITIZE_STRING
+        ),
+        "age" => array
+        (
+            "filter"=>FILTER_VALIDATE_INT,
+            "options"=>array
+            (
+                "min_range"=>1,
+                "max_range"=>120
+            )
+        ),
+        "email"=> FILTER_VALIDATE_EMAIL
+    );
+    
+    $result = filter_input_array(INPUT_GET, $filters);
+    
+    if (!$result["age"])
+    {
+        echo("年龄必须在 1 到 120 之间。<br>");
+    }
+    elseif(!$result["email"])
+    {
+        echo("E-Mail 不合法<br>");
+    }
+    else
+    {
+        echo("输入正确");
+    }
+    ?>
+
+    实例解释
+    上面的实例有三个通过 "GET" 方法传送的输入变量 (name、age 和 email)：
+    设置一个数组，其中包含了输入变量的名称和用于指定的输入变量的过滤器
+    调用 filter_input_array() 函数，参数包括 GET 输入变量及刚才设置的数组
+    检测 $result 变量中的 "age" 和 "email" 变量是否有非法的输入。（如果存在非法输入，在使用 filter_input_array() 函数之后，输入变量为 FALSE。）
+    filter_input_array() 函数的第二个参数可以是数组或单一过滤器的 ID。
+    如果该参数是单一过滤器的 ID，那么这个指定的过滤器会过滤输入数组中所有的值。
+    如果该参数是一个数组，那么此数组必须遵循下面的规则：
+    必须是一个关联数组，其中包含的输入变量是数组的键（比如 "age" 输入变量）
+    此数组的值必须是过滤器的 ID ，或者是规定了过滤器、标志和选项的数组
+使用 Filter Callback
+    通过使用 FILTER_CALLBACK 过滤器，可以调用自定义的函数，把它作为一个过滤器来使用。这样，我们就拥有了数据过滤的完全控制权。
+    您可以创建自己的自定义函数，也可以使用已存在的 PHP 函数。
+    将您准备用到的过滤器的函数，按指定选项的规定方法进行规定。在关联数组中，带有名称 "options"。
+    在下面的实例中，我们使用了一个自定义的函数把所有 "_" 转换为 "."：
+    实例
+    <?php
+    function convertSpace($string)
+    {
+        return str_replace("_", ".", $string);
+    }
+    $string = "www_runoob_com!";
+    echo filter_var($string, FILTER_CALLBACK,
+    array("options"=>"convertSpace"));
+    ?>
+    实例解释
+    上面的实例把所有 "_" 转换成 "." ：
+        创建一个把 "_" 替换为 "." 的函数
+        调用 filter_var() 函数，它的参数是 FILTER_CALLBACK 过滤器以及包含我们的函数的数组
+
+PHP 高级过滤器
+    检测一个数字是否在一个范围内
+    以下实例使用了 filter_var() 函数来检测一个 INT 型的变量是否在 1 到 200 内:
+
+    实例
+    <?php
+    $int = 122;
+    $min = 1;
+    $max = 200;
+
+    if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
+        echo("变量值不在合法范围内");
+    } else {
+        echo("变量值在合法范围内");
+    }
+    ?>
+检测 IPv6 地址
+    以下实例使用了 filter_var() 函数来检测一个 $ip 变量是否是 IPv6 地址:
+
+    实例
+    <?php
+    $ip = "2001:0db8:85a3:08d3:1319:8a2e:0370:7334";
+
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
+        echo("$ip 是一个 IPv6 地址");
+    } else {
+        echo("$ip 不是一个 IPv6 地址");
+    }
+    ?>
+检测 URL - 必须包含QUERY_STRING（查询字符串）
+    以下实例使用了 filter_var() 函数来检测 $url 是否包含查询字符串：
+
+    实例
+    <?php
+    $url = "http://www.runoob.com";
+
+    if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) === false) {
+        echo("$url 是一个合法的 URL");
+    } else {
+        echo("$url 不是一个合法的 URL");
+    }
+    ?>
+移除 ASCII 值大于 127 的字符
+    以下实例使用了 filter_var() 函数来移除字符串中 ASCII 值大于 127 的字符，同样它也能移除 HTML 标签：
+    实例
+    <?php
+    $str = "<h1>Hello WorldÆØÅ!</h1>";
+
+    $newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+    echo $newstr;
+    ?>
+
+
+PHP JSON
+本章节我们将为大家介绍如何使用 PHP 语言来编码和解码 JSON 对象。
+环境配置
+    在 php5.2.0 及以上版本已经内置 JSON 扩展。
+JSON 函数
+    函数	描述
+    json_encode	对变量进行 JSON 编码
+    json_decode	对 JSON 格式的字符串进行解码，转换为 PHP 变量
+    json_last_error	返回最后发生的错误
+json_encode
+    PHP json_encode() 用于对变量进行 JSON 编码，该函数如果执行成功返回 JSON 数据，否则返回 FALSE 。
+    语法
+    string json_encode ( $value [, $options = 0 ] )
+    参数
+    value: 要编码的值。该函数只对 UTF-8 编码的数据有效。
+    options:由以下常量组成的二进制掩码 JSON_HEX_QUOT, JSON_HEX_TAG, JSON_HEX_AMP, JSON_HEX_APOS, JSON_NUMERIC_CHECK, JSON_PRETTY_PRINT, JSON_UNESCAPED_SLASHES, JSON_FORCE_OBJECT, JSON_PRESERVE_ZERO_FRACTION, JSON_UNESCAPED_UNICODE, JSON_PARTIAL_OUTPUT_ON_ERROR。
+    要注意的是 JSON_UNESCAPED_UNICODE 选项，如果我们不希望中文被编码，可以添加该选项。
+    实例
+    以下实例演示了如何将 PHP 数组转换为 JSON 格式数据：
+
+    <?php
+    $arr = array('a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5);
+    echo json_encode($arr);
+    ?>
+    以上代码执行结果为：
+
+    {"a":1,"b":2,"c":3,"d":4,"e":5}
+    以下实例演示了如何将 PHP 对象转换为 JSON 格式数据：
+
+    实例
+    <?php
+    class Emp {
+        public $name = "";
+        public $hobbies  = "";
+        public $birthdate = "";
+    }
+    $e = new Emp();
+    $e->name = "sachin";
+    $e->hobbies  = "sports";
+    $e->birthdate = date('m/d/Y h:i:s a', "8/5/1974 12:20:03 p");
+    $e->birthdate = date('m/d/Y h:i:s a', strtotime("8/5/1974 12:20:03"));
+
+    echo json_encode($e);
+    ?>
+    以上代码执行结果为：
+
+    {"name":"sachin","hobbies":"sports","birthdate":"08\/05\/1974 12:20:03 pm"}
+    使用 JSON_UNESCAPED_UNICODE 选项
+    <?php
+    $arr = array('runoob' => '菜鸟教程', 'taobao' => '淘宝网');
+    echo json_encode($arr); // 编码中文
+    echo PHP_EOL;  // 换行符
+    echo json_encode($arr, JSON_UNESCAPED_UNICODE);  // 不编码中文
+    ?>
+    以上代码执行结果为：
+
+    {"runoob":"\u83dc\u9e1f\u6559\u7a0b","taobao":"\u6dd8\u5b9d\u7f51"}
+    {"runoob":"菜鸟教程","taobao":"淘宝网"}
+json_decode
+    PHP json_decode() 函数用于对 JSON 格式的字符串进行解码，并转换为 PHP 变量。
+
+    语法
+    mixed json_decode ($json_string [,$assoc = false [, $depth = 512 [, $options = 0 ]]])
+    参数
+        json_string: 待解码的 JSON 字符串，必须是 UTF-8 编码数据
+        assoc: 当该参数为 TRUE 时，将返回数组，FALSE 时返回对象。
+        depth: 整数类型的参数，它指定递归深度
+        options: 二进制掩码，目前只支持 JSON_BIGINT_AS_STRING 。
+
+    实例
+    以下实例演示了如何解码 JSON 数据：
+
+    实例
+    <?php
+    $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+
+    var_dump(json_decode($json));
+    var_dump(json_decode($json, true));
+    ?>
+    以上代码执行结果为：
+
+    object(stdClass)#1 (5) {
+        ["a"] => int(1)
+        ["b"] => int(2)
+        ["c"] => int(3)
+        ["d"] => int(4)
+        ["e"] => int(5)
+    }
+
+    array(5) {
+        ["a"] => int(1)
+        ["b"] => int(2)
+        ["c"] => int(3)
+        ["d"] => int(4)
+        ["e"] => int(5)
+    }
+
+PHP 7 新特性
+    PHP 7+ 版本极大地改进了性能，在一些WordPress基准测试当中，性能可以达到PHP 5.6的3倍。
+    https://www.runoob.com/php/php7-new-features.html
+
+
+PHP MySQL 简介
+通过 PHP，您可以连接和操作数据库。
+MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。
+MySQL 是什么？
+    MySQL 是一种在 Web 上使用的数据库系统。
+    MySQL 是一种在服务器上运行的数据库系统。
+    MySQL 不管在小型还是大型应用程序中，都是理想的选择。
+    MySQL 是非常快速，可靠，且易于使用的。
+    MySQL 支持标准的 SQL。
+    MySQL 在一些平台上编译。
+    MySQL 是免费下载使用的。
+    MySQL 是由 Oracle 公司开发、发布和支持的。
+    MySQL 是以公司创始人 Monty Widenius's daughter: My 命名的。
+    MySQL 中的数据存储在表中。表格是一个相关数据的集合，它包含了列和行。
+    在分类存储信息时，数据库非常有用。一个公司的数据库可能拥有以下表：
+    Employees
+    Products
+    Customers
+    Orders
+查询
+    查询是一种询问或请求。
+    通过 MySQL，我们可以向数据库查询具体的信息，并得到返回的记录集。
+
+
+PHP 连接 MySQL
+    PHP 5 及以上版本建议使用以下方式连接 MySQL :
+        MySQLi extension ("i" 意为 improved)
+        PDO (PHP Data Objects)
+    在 PHP 早期版本中我们使用 MySQL 扩展。但该扩展在 2012 年开始不建议使用。
+我是该用 MySQLi ，还是 PDO?
+    如果你需要一个简短的回答，即 "你习惯哪个就用哪个"。
+    MySQLi 和 PDO 有它们自己的优势：
+    PDO 应用在 12 种不同数据库中， MySQLi 只针对 MySQL 数据库。
+    所以，如果你的项目需要在多种数据库中切换，建议使用 PDO ，这样你只需要修改连接字符串和部分查询语句即可。 使用 MySQLi, 如果不同数据库，你需要重新编写所有代码，包括查询。
+    两者都是面向对象, 但 MySQLi 还提供了 API 接口。
+    两者都支持预处理语句。 预处理语句可以防止 SQL 注入，对于 web 项目的安全性是非常重要的。
+MySQLi 和 PDO 连接 MySQL 实例
+    在本章节及接下来的章节中，我们会使用以下三种方式来演示 PHP 操作 MySQL:
+    MySQLi (面向对象)
+    MySQLi (面向过程)
+    PDO
+MySQLi 安装
+Linux 和 Windows: 在 php5 mysql 包安装时 MySQLi 扩展多数情况下是自动安装的
+PDO 安装
+    For 安装详细信息，请查看： http://php.net/manual/en/pdo.installation.php
+    可以通过 phpinfo() 查看是否安装成功：
+连接 MySQL
+    在我们访问 MySQL 数据库前，我们需要先连接到数据库服务器：
+
+    实例 (MySQLi - 面向对象)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password);
+    
+    // 检测连接
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    } 
+    echo "连接成功";
+    ?>
+
+    注意在以上面向对象的实例中 $connect_error 是在 PHP 5.2.9 和 5.3.0 中添加的。如果你需要兼容更早版本 请使用以下代码替换:
+    // 检测连接
+    if (mysqli_connect_error()) {
+        die("数据库连接失败: " . mysqli_connect_error());
+    }
+    实例 (MySQLi - 面向过程)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    
+    // 创建连接
+    $conn = mysqli_connect($servername, $username, $password);
+    
+    // 检测连接
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    echo "连接成功";
+    ?>
+实例 (PDO)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    
+    try {
+        $conn = new PDO("mysql:host=$servername;", $username, $password);
+        echo "连接成功"; 
+    }
+    catch(PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+    ?>
+
+    注意在以上 PDO 实例中我们已经指定了数据库 (myDB)。PDO 在连接过程需要设置数据库名。如果没有指定，则会抛出异常。
+关闭连接
+    连接在脚本执行完后会自动关闭。你也可以使用以下代码来关闭连接：
+    实例 (MySQLi - 面向对象)
+    $conn->close();
+    实例 (MySQLi - 面向过程)
+    mysqli_close($conn);
+    实例 (PDO)
+    $conn = null;
+我们可以用一下办法来测试PHP的MySQL数据库的连接。
+    使用函数 parse_ini_file() 解析配置文件 config.ini 来获得数据库连接参数，然后使用 new 关键字对 mysqli 类进行实例化，最后使用函数 mysqli_connect_errno() 来判断是否成功连接上了 MySQL 数据库，实现该过程的代码如下所示：
+    try{
+        //解析config.ini文件
+        $config = parse_ini_file(realpath(dirname(__FILE__) . '/config/config.ini'));
+        //对mysqli类进行实例化
+        $mysqli = new mysqli($config['host'], $config['username'], $config['password'], $config['dbname']);   
+        if(mysqli_connect_errno()){    //判断是否成功连接上MySQL数据库
+            throw new Exception('数据库连接错误！');  //如果连接错误，则抛出异常
+        }else{
+            echo '数据库连接成功！';   //打印连接成功的提示
+        }
+    }catch (Exception $e){        //捕获异常
+        echo $e->getMessage();    //打印异常信息
+    }
+
+
+使用 MySQLi 和 PDO 创建 MySQL 数据库
+    CREATE DATABASE 语句用于在 MySQL 中创建数据库。
+    在下面的实例中，创建了一个名为 "myDB" 的数据库：
+    实例 (MySQLi - 面向对象)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password"; 
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password);
+    // 检测连接
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    } 
+    // 创建数据库
+    $sql = "CREATE DATABASE myDB";
+    if ($conn->query($sql) === TRUE) {
+        echo "数据库创建成功";
+    } else {
+        echo "Error creating database: " . $conn->error;
+    }
+    $conn->close();
+    ?>
+    Note	注意： 当你创建一个新的数据库时，你必须为 mysqli 对象指定三个参数 (servername, username 和 password)。
+    Tip: 如果你使用其他端口（默认为3306），为数据库参数添加空字符串，如: new mysqli("localhost", "username", "password", "", port)
+实例 (MySQLi Procedural)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    
+    // 创建连接
+    $conn = mysqli_connect($servername, $username, $password);
+    // 检测连接
+    if (!$conn) {
+        die("连接失败: " . mysqli_connect_error());
+    }
+    
+    // 创建数据库
+    $sql = "CREATE DATABASE myDB";
+    if (mysqli_query($conn, $sql)) {
+        echo "数据库创建成功";
+    } else {
+        echo "Error creating database: " . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+    ?>
+实例
+    使用 PDO：
+    <?php 
+    $servername = "localhost"; 
+    $username = "username"; 
+    $password = "password"; 
+    try { 
+        $conn = new PDO("mysql:host=$servername", $username, $password); 
+
+        // 设置 PDO 错误模式为异常 
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+        $sql = "CREATE DATABASE myDBPDO"; 
+
+        // 使用 exec() ，因为没有结果返回 
+        $conn->exec($sql); 
+
+        echo "数据库创建成功<br>"; 
+    } 
+    catch(PDOException $e) 
+    { 
+        echo $sql . "<br>" . $e->getMessage(); 
+    } 
+    $conn = null; 
+    ?>
+    提示： 使用 PDO 的最大好处是在数据库查询过程出现问题时可以使用异常类来 处理问题。如果 try{ } 代码块出现异常，脚本会停止执行并会跳到第一个 catch(){ } 代码块执行代码。 在以上捕获的代码块中我们输出了 SQL 语句并生成错误信息。
+补充下数据库连接编码问题:
+    //php7
+    mysqli_query($conn, "set character set 'utf8'");//读库 
+    mysqli_query($conn,"set names 'utf8'");//写库
+    //php5
+    mysql_query("set character set 'utf8'");//读库 
+    mysql_query("set names 'utf8'");//写库
+
+
+PHP 创建 MySQL 表
+    一个数据表有一个唯一名称，并有行和列组成。
+    使用 MySQLi 和 PDO 创建 MySQL 表
+        CREATE TABLE 语句用于创建 MySQL 表。
+        创建表前，我们需要使用 use myDB 来选择要操作的数据库：
+        use myDB;
+    我们将创建一个名为 "MyGuests" 的表，有 5 个列： "id", "firstname", "lastname", "email" 和 "reg_date":
+
+    CREATE TABLE MyGuests (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        firstname VARCHAR(30) NOT NULL,
+        lastname VARCHAR(30) NOT NULL,
+        email VARCHAR(50),
+        reg_date TIMESTAMP
+    )
+    上表中的注意事项:
+
+    数据类型指定列可以存储什么类型的数据。完整的数据类型请参考我们的 数据类型参考手册。
+
+    在设置了数据类型后，你可以为每个列指定其他选项的属性：
+
+    NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。
+    DEFAULT value - 设置默认值
+    UNSIGNED - 使用无符号数值类型，0 及正数
+    AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1
+    PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置为 ID 数值，与 AUTO_INCREMENT 一起使用。
+    每个表都应该有一个主键(本列为 "id" 列)，主键必须包含唯一的值。
+    以下实例展示了如何在 PHP 中创建表：
+    实例 (MySQLi - 面向对象)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+    
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // 检测连接
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    } 
+    
+    // 使用 sql 创建数据表
+    $sql = "CREATE TABLE MyGuests (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP
+    )";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Table MyGuests created successfully";
+    } else {
+        echo "创建数据表错误: " . $conn->error;
+    }
+    
+    $conn->close();
+    ?>
+实例 (MySQLi - 面向过程)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+    
+    // 创建连接
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // 检测连接
+    if (!$conn) {
+        die("连接失败: " . mysqli_connect_error());
+    }
+    
+    // 使用 sql 创建数据表
+    $sql = "CREATE TABLE MyGuests (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    firstname VARCHAR(30) NOT NULL,
+    lastname VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP
+    )";
+    
+    if (mysqli_query($conn, $sql)) {
+        echo "数据表 MyGuests 创建成功";
+    } else {
+        echo "创建数据表错误: " . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+    ?>
+实例 (PDO)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDBPDO";
+    
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // 设置 PDO 错误模式，用于抛出异常
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+        // 使用 sql 创建数据表
+        $sql = "CREATE TABLE MyGuests (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+        firstname VARCHAR(30) NOT NULL,
+        lastname VARCHAR(30) NOT NULL,
+        email VARCHAR(50),
+        reg_date TIMESTAMP
+        )";
+    
+        // 使用 exec() ，没有结果返回 
+        $conn->exec($sql);
+        echo "数据表 MyGuests 创建成功";
+    }
+    catch(PDOException $e)
+    {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+    
+    $conn = null;
+    ?>
+
+
+PHP MySQL 插入数据
+    使用 MySQLi 和 PDO 向 MySQL 插入数据
+    在创建完数据库和表后，我们可以向表中添加数据。
+
+    以下为一些语法规则：
+
+        PHP 中 SQL 查询语句必须使用引号
+        在 SQL 查询语句中的字符串值必须加引号
+        数值的值不需要引号
+        NULL 值不需要引号
+    INSERT INTO 语句通常用于向 MySQL 表添加新的记录：
+
+    INSERT INTO table_name (column1, column2, column3,...)
+    VALUES (value1, value2, value3,...)
+    学习更多关于 SQL 知识，请查看我们的 SQL 教程。
+
+    在前面的几个章节中我们已经创建了表 "MyGuests"，表字段有: "id", "firstname", "lastname", "email" 和 "reg_date"。 现在，让我们开始向表填充数据。
+
+    Note	注意： 如果列设置 AUTO_INCREMENT (如 "id" 列) 或 TIMESTAMP (如 "reg_date" 列),，我们就不需要在 SQL 查询语句中指定值； MySQL 会自动为该列添加值。
+    以下实例向 "MyGuests" 表添加了新的记录:
+    $sql = "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('John', 'Doe', 'john@example.com')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "新记录插入成功";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+实例 (MySQLi - 面向过程)
+    $sql = "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('John', 'Doe', 'john@example.com')";
+    
+    if (mysqli_query($conn, $sql)) {
+        echo "新记录插入成功";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+实例 (PDO)
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('John', 'Doe', 'john@example.com')";
+    // 使用 exec() ，没有结果返回 
+    $conn->exec($sql);
+在学习 PDO 创建数据表的时候 ， 我遇到这个报错。
+    SQLSTATE[3D000]: Invalid catalog name: 1046 No database selected
+    最后发现问题在这里：
+    $conn = new PDO("mysql:host = $servername;dbname = $dbname",$username,$password);
+    因为我写代码的习惯是" = "两边都加上空格 ， 但是在这里 dbname = $dbname 的等号两边却不可以存在空格
+    所以正确的写法应该是 dbname=$dbname：
+    $conn = new PDO("mysql:host = $servername;dbname=$dbname",$username,$password);
+    这样就没有报错了！
+
+
+使用 MySQLi 和 PDO 向 MySQL 插入多条数据
+    mysqli_multi_query() 函数可用来执行多条SQL语句。
+    以下实例向 "MyGuests" 表添加了三条新的记录:
+    $sql = "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('John', 'Doe', 'john@example.com');";
+    $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('Mary', 'Moe', 'mary@example.com');";
+    $sql .= "INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES ('Julie', 'Dooley', 'julie@example.com')";
+    
+    if ($conn->multi_query($sql) === TRUE) {
+        echo "新记录插入成功";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    请注意，每个SQL语句必须用分号隔开。
+实例 (MySQLi - 面向过程)
+    if (mysqli_multi_query($conn, $sql)) {
+        echo "新记录插入成功";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+实例 (PDO)
+    // 开始事务
+    $conn->beginTransaction();
+    // SQL 语句
+    $conn->exec("INSERT INTO MyGuests (firstname, lastname, email) 
+    VALUES ('John', 'Doe', 'john@example.com')");
+    $conn->exec("INSERT INTO MyGuests (firstname, lastname, email) 
+    VALUES ('Mary', 'Moe', 'mary@example.com')");
+    $conn->exec("INSERT INTO MyGuests (firstname, lastname, email) 
+    VALUES ('Julie', 'Dooley', 'julie@example.com')");
+ 
+    // 提交事务
+    $conn->commit();
+    echo "新记录插入成功";
+使用预处理语句
+    mysqli 扩展提供了第二种方式用于插入语句。
+    我们可以预处理语句及绑定参数。
+    mysql 扩展可以不带数据发送语句或查询到mysql数据库。 你可以向列关联或 "绑定" 变量。
+    实例 (MySQLi 使用预处理语句)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+    
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // 检测连接
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    } else {
+        $sql = "INSERT INTO MyGuests(firstname, lastname, email)  VALUES(?, ?, ?)";
+    
+        // 为 mysqli_stmt_prepare() 初始化 statement 对象
+        $stmt = mysqli_stmt_init($conn);
+    
+        //预处理语句
+        if (mysqli_stmt_prepare($stmt, $sql)) {
+            // 绑定参数
+            mysqli_stmt_bind_param($stmt, 'sss', $firstname, $lastname, $email);
+    
+            // 设置参数并执行
+            $firstname = 'John';
+            $lastname = 'Doe';
+            $email = 'john@example.com';
+            mysqli_stmt_execute($stmt);
+    
+            $firstname = 'Mary';
+            $lastname = 'Moe';
+            $email = 'mary@example.com';
+            mysqli_stmt_execute($stmt);
+    
+            $firstname = 'Julie';
+            $lastname = 'Dooley';
+            $email = 'julie@example.com';
+            mysqli_stmt_execute($stmt);
+        }
+    }
+    ?>
+    我们可以看到以上实例中使用模块化来处理问题。我们可以通过创建代码块实现更简单的读取和管理。
+    注意参数的绑定。让我们看下 mysqli_stmt_bind_param() 中的代码：
+    mysqli_stmt_bind_param($stmt, 'sss', $firstname, $lastname, $email);
+    该函数绑定参数查询并将参数传递给数据库。第二个参数是 "sss" 。以下列表展示了参数的类型。 s 字符告诉 mysql 参数是字符串。
+    可以是以下四种参数:
+        i - 整数
+        d - 双精度浮点数
+        s - 字符串
+        b - 布尔值
+    每个参数必须指定类型，来保证数据的安全性。通过类型的判断可以减少SQL注入漏洞带来的风险。
+
+
+PHP MySQL 预处理语句
+预处理语句对于防止 MySQL 注入是非常有用的。
+预处理语句及绑定参数
+    预处理语句用于执行多个相同的 SQL 语句，并且执行效率更高。
+    预处理语句的工作原理如下：
+        预处理：创建 SQL 语句模板并发送到数据库。预留的值使用参数 "?" 标记 。例如：
+        INSERT INTO MyGuests (firstname, lastname, email) VALUES(?, ?, ?)
+        数据库解析，编译，对SQL语句模板执行查询优化，并存储结果不输出。
+        执行：最后，将应用绑定的值传递给参数（"?" 标记），数据库执行语句。应用可以多次执行语句，如果参数的值不一样。
+    相比于直接执行SQL语句，预处理语句有两个主要优点：
+        预处理语句大大减少了分析时间，只做了一次查询（虽然语句多次执行）。
+        绑定参数减少了服务器带宽，你只需要发送查询的参数，而不是整个语句。
+        预处理语句针对SQL注入是非常有用的，因为参数值发送后使用不同的协议，保证了数据的合法性
+解析以下实例的每行代码:
+    "INSERT INTO MyGuests (firstname, lastname, email) VALUES(?, ?, ?)"
+    在 SQL 语句中，我们使用了问号 (?)，在此我们可以将问号替换为整型，字符串，双精度浮点型和布尔值。
+    接下来，让我们来看下 bind_param() 函数：
+    $stmt->bind_param("sss", $firstname, $lastname, $email);
+    该函数绑定了 SQL 的参数，且告诉数据库参数的值。 "sss" 参数列处理其余参数的数据类型。s 字符告诉数据库该参数为字符串。
+    参数有以下四种类型:
+        i - integer（整型）
+        d - double（双精度浮点型）
+        s - string（字符串）
+        b - BLOB（binary large object:二进制大对象）
+    每个参数都需要指定类型。
+    通过告诉数据库参数的数据类型，可以降低 SQL 注入的风险。
+    Note	注意： 如果你想插入其他数据（用户输入），对数据的验证是非常重要的。
+PDO 中的预处理语句
+    以下实例我们在 PDO 中使用了预处理语句并绑定参数:
+
+
+从 MySQL 数据库读取数据
+    SELECT 语句用于从数据表中读取数据:
+    SELECT column_name(s) FROM table_name
+    我们可以使用 * 号来读取所有数据表中的字段：
+    SELECT * FROM table_name    
+使用 MySQLi
+    以下实例中我们从 myDB 数据库的 MyGuests 表读取了 id, firstname 和 lastname 列的数据并显示在页面上：
+    实例 (MySQLi - 面向对象)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+    // 创建连接
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("连接失败: " . $conn->connect_error);
+    } 
+    $sql = "SELECT id, firstname, lastname FROM MyGuests";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // 输出数据
+        while($row = $result->fetch_assoc()) {
+            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        }
+    } else {
+        echo "0 结果";
+    }
+    $conn->close();
+    ?>
+    以上代码解析如下:
+    首先，我们设置了 SQL 语句从 MyGuests数据表中读取 id, firstname 和 lastname 三个字段。之后我们使用该 SQL 语句从数据库中取出结果集并赋给复制给变量 $result。
+    函数 num_rows() 判断返回的数据。
+    如果返回的是多条数据，函数 fetch_assoc() 将结合集放入到关联数组并循环输出。 while() 循环出结果集，并输出 id, firstname 和 lastname 三个字段值。
+    以下实例使用 MySQLi 面向过程的方式，效果类似以上代码:
+实例 (MySQLi - 面向过程)
+    <?php
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDB";
+    
+    // 创建连接
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+        die("连接失败: " . mysqli_connect_error());
+    }
+    
+    $sql = "SELECT id, firstname, lastname FROM MyGuests";
+    $result = mysqli_query($conn, $sql);
+    
+    if (mysqli_num_rows($result) > 0) {
+        // 输出数据
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        }
+    } else {
+        echo "0 结果";
+    }
+    
+    mysqli_close($conn);
+    ?>
+使用 PDO (+ 预处理)
+    以下实例使用了预处理语句。
+
+    选取了 MyGuests 表中的 id, firstname 和 lastname 字段，并放到 HTML 表格中：
+
+    实例 (PDO)
+    <?php
+    echo "<table style='border: solid 1px black;'>";
+    echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
+    class TableRows extends RecursiveIteratorIterator {
+        function __construct($it) { 
+            parent::__construct($it, self::LEAVES_ONLY); 
+        }
+    
+        function current() {
+            return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+        }
+    
+        function beginChildren() { 
+            echo "<tr>"; 
+        } 
+    
+        function endChildren() { 
+            echo "</tr>" . "\n";
+        } 
+    } 
+    
+    $servername = "localhost";
+    $username = "username";
+    $password = "password";
+    $dbname = "myDBPDO";
+    
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT id, firstname, lastname FROM MyGuests"); 
+        $stmt->execute();
+    
+        // 设置结果集为关联数组
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+        foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+            echo $v;
+        }
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    $conn = null;
+    echo "</table>";
+    ?>
+
+
+WHERE 子句
+    WHERE 子句用于提取满足指定标准的的记录。
+
+    语法
+    SELECT column_name(s)
+    FROM table_name
+    WHERE column_name operator value
+    为了让 PHP 执行上面的语句，我们必须使用 mysqli_query() 函数。该函数用于向 MySQL 连接发送查询或命令。
+
+    实例
+    下面的实例将从 "Persons" 表中选取所有 FirstName='Peter' 的行：
+
+    <?php
+    $con=mysqli_connect("localhost","username","password","database");
+    // 检测连接
+    if (mysqli_connect_errno())
+    {
+        echo "连接失败: " . mysqli_connect_error();
+    }
+
+    $result = mysqli_query($con,"SELECT * FROM Persons
+    WHERE FirstName='Peter'");
+
+    while($row = mysqli_fetch_array($result))
+    {
+        echo $row['FirstName'] . " " . $row['LastName'];
+        echo "<br>";
+    }
+    ?>
+    以上代码将输出：
+
+    Peter Griffin
+
+
+PHP MySQL Order By 关键词
+ORDER BY 关键词用于对记录集中的数据进行排序。
+ORDER BY 关键词
+    ORDER BY 关键词用于对记录集中的数据进行排序。
+    ORDER BY 关键词默认对记录进行升序排序。
+    如果你想降序排序，请使用 DESC 关键字。
+    语法
+    SELECT column_name(s)
+    FROM table_name
+    ORDER BY column_name(s) ASC|DESC
+根据两列进行排序
+    可以根据多个列进行排序。当按照多个列进行排序时，只有第一列的值相同时才使用第二列：
+
+    SELECT column_name(s)
+    FROM table_name
+    ORDER BY column1, column2
+
+
+PHP MySQL Update
+    UPDATE 语句用于中修改数据库表中的数据。
+    语法
+    UPDATE table_name
+    SET column1=value, column2=value2,...
+    WHERE some_column=some_value
+    注释：请注意 UPDATE 语法中的 WHERE 子句。WHERE 子句规定了哪些记录需要更新。如果您想省去 WHERE 子句，所有的记录都会被更新！\
+在本教程的前面章节中，我们创建了一个名为 "Persons" 的表，如下所示：
+
+    FirstName	LastName	Age
+    Peter	Griffin	35
+    Glenn	Quagmire	33
+    下面的例子更新 "Persons" 表的一些数据：
+
+    <?php
+    $con=mysqli_connect("localhost","username","password","database");
+    // 检测连接
+    if (mysqli_connect_errno())
+    {
+        echo "连接失败: " . mysqli_connect_error();
+    }
+
+    mysqli_query($con,"UPDATE Persons SET Age=36
+    WHERE FirstName='Peter' AND LastName='Griffin'");
+
+    mysqli_close($con);
+    ?>
+    在这次更新后，"Persons" 表如下所示：
+
+    FirstName	LastName	Age
+    Peter	Griffin	36
+    Glenn	Quagmire	33
+
+
+PHP MySQL Delete
+DELETE 语句用于从数据库表中删除行。
+删除数据库中的数据
+    DELETE FROM 语句用于从数据库表中删除记录。
+
+    语法
+    DELETE FROM table_name
+    WHERE some_column = some_value
+看下面的 "Persons" 表：
+
+    FirstName	LastName	Age
+    Peter	Griffin	35
+    Glenn	Quagmire	33
+    下面的实例删除 "Persons" 表中所有 LastName='Griffin' 的记录：
+
+    <?php
+    $con=mysqli_connect("localhost","username","password","database");
+    // 检测连接
+    if (mysqli_connect_errno())
+    {
+        echo "连接失败: " . mysqli_connect_error();
+    }
+
+    mysqli_query($con,"DELETE FROM Persons WHERE LastName='Griffin'");
+
+    mysqli_close($con);
+    ?>
+    在这次删除后，"Persons" 表如下所示：
+
+    FirstName	LastName	Age
+    Glenn	Quagmire	33
+
+
+PHP 数据库 ODBC
+    ODBC 是一种应用程序编程接口（Application Programming Interface，API），使我们有能力连接到某个数据源（比如一个 MS Access 数据库）。
+创建 ODBC 连接
+    通过一个 ODBC 连接，您可以连接到您的网络中的任何计算机上的任何数据库，只要 ODBC 连接是可用的。
+    这是创建到达 MS Access 数据库的 ODBC 连接的方法：
+    在控制面板中打开管理工具图标。
+    双击其中的数据源(ODBC)图标。
+    选择系统 DSN 选项卡。
+    点击系统 DSN 选项卡中的添加。
+    选择Microsoft Access Driver。点击完成。
+    在下一个界面，点击选择来定位数据库。
+    为数据库起一个数据源名(DSN)。
+    点击确定。
+    请注意，必须在您的网站所在的计算机上完成这个配置。如果您的计算机上正在运行 Internet 信息服务(IIS)，上面的指令将会生效，但是如果您的网站位于远程服务器，您必须拥有对该服务器的物理访问权限，或者请您的主机提供商为您建立 DSN。
+连接到 ODBC
+    odbc_connect() 函数用于连接到 ODBC 数据源。该函数有四个参数：数据源名、用户名、密码以及可选的指针类型。
+    odbc_exec() 函数用于执行 SQL 语句。
+    实例
+    下面的实例创建了到达名为 northwind 的 DSN 的连接，没有用户名和密码。然后创建并执行一条 SQL 语句：
+    $conn=odbc_connect('northwind','','');
+    $sql="SELECT * FROM customers";
+    $rs=odbc_exec($conn,$sql);
+取回记录
+    odbc_fetch_row() 函数用于从结果集中返回记录。如果能够返回行，则函数返回 true，否则返回 false。
+    该函数有两个参数：ODBC 结果标识符和可选的行号：
+    odbc_fetch_row($rs)
+从记录中取回字段
+    odbc_result() 函数用于从记录中读取字段。该函数有两个参数：ODBC 结果标识符和字段编号或名称。
+    下面的代码行从记录中返回第一个字段的值：
+    $compname=odbc_result($rs,1);
+    下面的代码行返回名为 "CompanyName" 的字段的值：
+    $compname=odbc_result($rs,"CompanyName");
+
+
+
+PHP XML Expat 解析器
+内建的 Expat 解析器使在 PHP 中处理 XML 文档成为可能。
+XML 是什么？
+    XML 用于描述数据，其焦点是数据是什么。XML 文件描述了数据的结构。
+    在 XML 中，没有预定义的标签。您必须定义自己的标签。
+Expat 是什么？
+    如需读取和更新 - 创建和处理 - 一个 XML 文档，您需要 XML 解析器。
+    有两种基本的 XML 解析器类型：
+    基于树的解析器：这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了对树中元素的访问，例如文档对象模型 (DOM)。
+    基于事件的解析器：将 XML 文档视为一系列的事件。当某个具体的事件发生时，解析器会调用函数来处理。
+    Expat 解析器是基于事件的解析器。
+    基于事件的解析器集中在 XML 文档的内容，而不是它们的结构。正因为如此，基于事件的解析器能够比基于树的解析器更快地访问数据。
+    请看下面的 XML 片段：
+    <from>Jani</from>
+    基于事件的解析器把上面的 XML 报告为一连串的三个事件：
+        开始元素：from
+        开始 CDATA 部分，值：Jani
+        关闭元素：from
+    上面的 XML 实例包含了形式良好的 XML。不过这个实例是无效的 XML，因为没有与它关联的文档类型声明 (DTD)。
+    然而，在使用 Expat 解析器时，这没有区别。Expat 是不检查有效性的解析器，忽略任何 DTD。
+    作为一款基于事件、非验证的 XML 解析器，Expat 快速且轻巧，十分适合 PHP 的 Web 应用程序。
+    注释：XML 文档必须形式良好，否则 Expat 会生成错误。
+安装
+    XML Expat 解析器函数是 PHP 核心的组成部分。无需安装就可以使用这些函数。
+XML 文件
+    下面的 XML 文件将应用在我们的实例中：
+
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <note>
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+    </note>
+初始化 XML 解析器
+    我们要在 PHP 中初始化 XML 解析器，为不同的 XML 事件定义处理器，然后解析这个 XML 文件。
+实例
+    <?php
+    //Initialize the XML parser
+    $parser=xml_parser_create();
+
+    //Function to use at the start of an element
+    function start($parser,$element_name,$element_attrs)
+    {
+    switch($element_name)
+    {
+    case "NOTE":
+    echo "-- Note --<br>";
+    break;
+    case "TO":
+    echo "To: ";
+    break;
+    case "FROM":
+    echo "From: ";
+    break;
+    case "HEADING":
+    echo "Heading: ";
+    break;
+    case "BODY":
+    echo "Message: ";
+    }
+    }
+
+    //Function to use at the end of an element
+    function stop($parser,$element_name)
+    {
+    echo "<br>";
+    }
+
+    //Function to use when finding character data
+    function char($parser,$data)
+    {
+    echo $data;
+    }
+
+    //Specify element handler
+    xml_set_element_handler($parser,"start","stop");
+
+    //Specify data handler
+    xml_set_character_data_handler($parser,"char");
+
+    //Open XML file
+    $fp=fopen("test.xml","r");
+
+    //Read data
+    while ($data=fread($fp,4096))
+    {
+    xml_parse($parser,$data,feof($fp)) or 
+    die (sprintf("XML Error: %s at line %d", 
+    xml_error_string(xml_get_error_code($parser)),
+    xml_get_current_line_number($parser)));
+    }
+
+    //Free the XML parser
+    xml_parser_free($parser);
+    ?>
+    以上代码将输出：
+
+    -- Note --
+    To: Tove
+    From: Jani
+    Heading: Reminder
+    Message: Don't forget me this weekend!
+    工作原理：
+        通过 xml_parser_create() 函数初始化 XML 解析器
+        创建配合不同事件处理程序的的函数
+        添加 xml_set_element_handler() 函数来定义，当解析器遇到开始和结束标签时执行哪个函数
+        添加 xml_set_character_data_handler() 函数来定义，当解析器遇到字符数据时执行哪个函数
+        通过 xml_parse() 函数来解析文件 "test.xml"
+        万一有错误的话，添加 xml_error_string() 函数把 XML 错误转换为文本说明
+        调用 xml_parser_free() 函数来释放分配给 xml_parser_create() 函数的内存
+
+
+PHP XML DOM
+内建的 DOM 解析器使在 PHP 中处理 XML 文档成为可能。
+DOM 是什么？
+    W3C DOM 提供了针对 HTML 和 XML 文档的标准对象集，以及用于访问和操作这些文档的标准接口。
+    W3C DOM 被分为不同的部分（Core, XML 和 HTML）和不同的级别（DOM Level 1/2/3）：
+        Core DOM - 为任何结构化文档定义标准的对象集
+        XML DOM - 为 XML 文档定义标准的对象集
+        HTML DOM - 为 HTML 文档定义标准的对象集
+    如需学习更多关于 XML DOM 的知识，请访问我们的 XML DOM 教程。
+XML 解析
+    如需读取和更新 - 创建和处理 - 一个 XML 文档，您需要 XML 解析器。
+    有两种基本的 XML 解析器类型：
+
+        基于树的解析器：这种解析器把 XML 文档转换为树型结构。它分析整篇文档，并提供了对树中元素的访问，例如文档对象模型 (DOM)。
+        基于事件的解析器：将 XML 文档视为一系列的事件。当某个具体的事件发生时，解析器会调用函数来处理。
+    DOM 解析器是基于树的解析器。
+    请看下面的 XML 文档片段：
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <from>Jani</from>
+    XML DOM 把上面的 XML 视为一个树形结构：
+
+        Level 1: XML 文档
+        Level 2: 根元素： <from>
+        Level 3: 文本元素： "Jani"
+安装
+    DOM XML 解析器函数是 PHP 核心的组成部分。无需安装就可以使用这些函数。
+加载和输出 XML
+    我们需要初始化 XML 解析器，加载 XML，并把它输出：
+    实例
+    <?php
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load("note.xml");
+    print $xmlDoc->saveXML();
+    ?>
+    以上代码将输出：
+    ToveJaniReminder Don't forget me this weekend!
+    如果您在浏览器窗口中查看源代码，会看到下面的 HTML：
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <note>
+    <to>Tove</to>
+    <from>Jani</from>
+    <heading>Reminder</heading>
+    <body>Don't forget me this weekend!</body>
+    </note>
+    上面的实例创建了一个 DOMDocument-Object，并把 "note.xml" 中的 XML 载入这个文档对象中。
+    saveXML() 函数把内部 XML 文档放入一个字符串，这样我们就可以输出它。
+遍历 XML
+    我们要初始化 XML 解析器，加载 XML，并遍历 <note> 元素的所有元素：
+
+    实例
+    <?php
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load("note.xml");
+
+    $x = $xmlDoc->documentElement;
+    foreach ($x->childNodes AS $item)
+    {
+        print $item->nodeName . " = " . $item->nodeValue . "<br>";
+    }
+    ?>
+    以上代码将输出：
+
+    #text = 
+    to = Tove
+    #text = 
+    from = Jani
+    #text = 
+    heading = Reminder
+    #text = 
+    body = Don't forget me this weekend!
+    #text =
+    在上面的实例中，您看到了每个元素之间存在空的文本节点。
+    当 XML 生成时，它通常会在节点之间包含空白。XML DOM 解析器把它们当作普通的元素，如果您不注意它们，有时会产生问题。
+
+
+PHP SimpleXML
+PHP SimpleXML 处理最普通的 XML 任务，其余的任务则交由其它扩展处理。
+什么是 PHP SimpleXML？
+    SimpleXML 是 PHP 5 中的新特性。
+    SimpleXML 扩展提供了一种获取 XML 元素的名称和文本的简单方式。
+    与 DOM 或 Expat 解析器相比，SimpleXML 仅仅用几行代码就可以从 XML 元素中读取文本数据。
+    SimpleXML 可把 XML 文档（或 XML 字符串）转换为对象，比如：
+        元素被转换为 SimpleXMLElement 对象的单一属性。当同一级别上存在多个元素时，它们会被置于数组中。
+        属性通过使用关联数组进行访问，其中的索引对应属性名称。
+        元素内部的文本被转换为字符串。如果一个元素拥有多个文本节点，则按照它们被找到的顺序进行排列。
+    当执行类似下列的基础任务时，SimpleXML 使用起来非常快捷：
+        读取/提取 XML 文件/字符串的数据
+        编辑文本节点或属性
+    然而，在处理高级 XML 时，比如命名空间，最好使用 Expat 解析器或 XML DOM。
+安装
+    从 PHP 5 开始，SimpleXML 函数是 PHP 核心的组成部分。无需安装就可以使用这些函数。
+PHP SimpleXML 实例
+    假设我们有如下的 XML 文件，"note.xml"：
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <note>
+    <to>Tove</to>
+        <from>Jani</from>
+        <heading>Reminder</heading>
+        <body>Don't forget me this weekend!</body>
+    </note>
+    现在我们想要输出上面的 XML 文件的不同信息：
+
+    实例 1
+    输出 $xml 变量（是 SimpleXMLElement 对象）的键和元素：
+
+    <?php
+    $xml=simplexml_load_file("note.xml");
+    print_r($xml);
+    ?>
+    实例 2
+    输出 XML 文件中每个元素的数据：
+
+    <?php
+    $xml=simplexml_load_file("note.xml");
+    echo $xml->to . "<br>";
+    echo $xml->from . "<br>";
+    echo $xml->heading . "<br>";
+    echo $xml->body;
+    ?>
+输出每个子节点的元素名称和数据：
+
+    <?php
+    $xml=simplexml_load_file("note.xml");
+    echo $xml->getName() . "<br>";
+    
+    foreach($xml->children() as $child)
+    {
+        echo $child->getName() . ": " . $child . "<br>";
+    }
+    ?>
+
+
+AJAX 简介
+    AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。
+AJAX 是什么？
+    AJAX = Asynchronous JavaScript and XML.
+    AJAX 是一种用于创建快速动态网页的技术。
+    AJAX 通过在后台与服务器进行少量数据交换，使网页实现异步更新。这意味着可以在不重载整个页面的情况下，对网页的某些部分进行更新。
+    传统的网页（不使用 AJAX）如果需要更新内容，必须重载整个页面。
+    有很多使用 AJAX 的应用程序案例：Google Maps、Gmail、Youtube 和 Facebook。
+AJAX 基于因特网标准
+    AJAX 基于因特网标准，并使用以下技术组合：
+    XMLHttpRequest 对象（与服务器异步交互数据）
+    JavaScript/DOM（显示/取回信息）
+    CSS（设置数据的样式）
+    XML（常用作数据传输的格式）
+    lamp AJAX 应用程序与浏览器和平台无关的！
+谷歌搜索建议（Google Suggest）
+    随着谷歌搜索建议功能在 2005 的发布，AJAX 开始流行起来。
+    谷歌搜索建议（Google Suggest） 使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框中键入内容时，JavaScript 会把字符发送到服务器，服务器则会返回建议列表。
+今天就开始使用 AJAX
+    在我们的 PHP 教程中，我们将演示 AJAX 如何在不重载整个页面的情况下对网页的某些部分进行更新。服务器脚本我们将采用 PHP 来编写。
+
+
+PHP - AJAX 与 PHP
+AJAX 被用于创建交互性更强的应用程序。
+AJAX PHP 实例
+下面的实例将演示当用户在输入框中键入字符时，网页如何与 Web 服务器进行通信：
+实例解释 - HTML 页面
+    当用户在上面的输入框中键入字符时，会执行 "showHint()" 函数。该函数由 "onkeyup" 事件触发：
+    <html>
+    <head>
+    <script>
+    function showHint(str)
+    {
+        if (str.length==0)
+        { 
+            document.getElementById("txtHint").innerHTML="";
+            return;
+        }
+        if (window.XMLHttpRequest)
+        {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行的代码
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {    
+            //IE6, IE5 浏览器执行的代码
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","gethint.php?q="+str,true);
+        xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+
+    <p><b>在输入框中输入一个姓名:</b></p>
+    <form> 
+    姓名: <input type="text" onkeyup="showHint(this.value)">
+    </form>
+    <p>返回值: <span id="txtHint"></span></p>
+
+    </body>
+    </html>
+    源代码解释：
+    如果输入框是空的（str.length==0），该函数会清空 txtHint 占位符的内容，并退出该函数。
+    如果输入框不是空的，那么 showHint() 会执行以下步骤：
+        创建 XMLHttpRequest 对象
+        创建在服务器响应就绪时执行的函数
+        向服务器上的文件发送请求
+        请注意添加到 URL 末端的参数（q）（包含输入框的内容）
+PHP 文件
+    上面这段通过 JavaScript 调用的服务器页面是名为 "gethint.php" 的 PHP 文件。
+
+    "gethint.php" 中的源代码会检查姓名数组，然后向浏览器返回对应的姓名：
+
+    <?php
+    // 将姓名填充到数组中
+    $a[]="Anna";
+    $a[]="Brittany";
+    $a[]="Cinderella";
+    $a[]="Diana";
+    $a[]="Eva";
+    $a[]="Fiona";
+    $a[]="Gunda";
+    $a[]="Hege";
+    $a[]="Inga";
+    $a[]="Johanna";
+    $a[]="Kitty";
+    $a[]="Linda";
+    $a[]="Nina";
+    $a[]="Ophelia";
+    $a[]="Petunia";
+    $a[]="Amanda";
+    $a[]="Raquel";
+    $a[]="Cindy";
+    $a[]="Doris";
+    $a[]="Eve";
+    $a[]="Evita";
+    $a[]="Sunniva";
+    $a[]="Tove";
+    $a[]="Unni";
+    $a[]="Violet";
+    $a[]="Liza";
+    $a[]="Elizabeth";
+    $a[]="Ellen";
+    $a[]="Wenche";
+    $a[]="Vicky";
+
+    //从请求URL地址中获取 q 参数
+    $q=$_GET["q"];
+
+    //查找是否由匹配值， 如果 q>0
+    if (strlen($q) > 0)
+    {
+        $hint="";
+        for($i=0; $i<count($a); $i++)
+        {
+            if (strtolower($q)==strtolower(substr($a[$i],0,strlen($q))))
+            {
+                if ($hint=="")
+                {
+                    $hint=$a[$i];
+                }
+                else
+                {
+                    $hint=$hint." , ".$a[$i];
+                }
+            }
+        }
+    }
+
+    // 如果没有匹配值设置输出为 "no suggestion" 
+    if ($hint == "")
+    {
+        $response="no suggestion";
+    }
+    else
+    {
+        $response=$hint;
+    }
+
+    //输出返回值
+    echo $response;
+    ?>
+    解释：如果 JavaScript 发送了任何文本（即 strlen($q) > 0），则会发生：
+        查找匹配 JavaScript 发送的字符的姓名
+        如果未找到匹配，则将响应字符串设置为 "no suggestion"
+        如果找到一个或多个匹配姓名，则用所有姓名设置响应字符串
+        把响应发送到 "txtHint" 占位符
+PHP Ajax 跨域问题解决方案
+    如果你的异步请求需要跨域可以查看：PHP Ajax 跨域问题解决方案。
+
+
+PHP - AJAX 与 MySQL
+AJAX 可用来与数据库进行交互式通信。
+AJAX 数据库实例
+    下面的实例将演示网页如何通过 AJAX 从数据库读取信息：
+    本教程使用到的 Websites 表 SQL 文件：websites.sql。
+实例解释 - MySQL 数据库
+在上面的实例中，我们使用的数据库表如下所示：
+
+mysql> select * from websites;
++----+--------------+---------------------------+-------+---------+
+| id | name         | url                       | alexa | country |
++----+--------------+---------------------------+-------+---------+
+| 1  | Google       | https://www.google.cm/    | 1     | USA     |
+| 2  | 淘宝       | https://www.taobao.com/   | 13    | CN      |
+| 3  | 菜鸟教程 | http://www.runoob.com/    | 4689  | CN      |
+| 4  | 微博       | http://weibo.com/         | 20    | CN      |
+| 5  | Facebook     | https://www.facebook.com/ | 3     | USA     |
++----+--------------+---------------------------+-------+---------+
+5 rows in set (0.01 sec)
+实例解释 - HTML 页面
+    当用户在上面的下拉列表中选择某位用户时，会执行名为 "showSite()" 的函数。该函数由 "onchange" 事件触发：
+    test.html 文件代码:
+    <!DOCTYPE html> 
+    <html> 
+    <head> 
+    <meta charset="utf-8"> 
+    <title>菜鸟教程(runoob.com)</title> 
+    <script>
+    function showSite(str)
+    {
+        if (str=="")
+        {
+            document.getElementById("txtHint").innerHTML="";
+            return;
+        } 
+        if (window.XMLHttpRequest)
+        {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","getsite_mysql.php?q="+str,true);
+        xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+    
+    <form>
+    <select name="users" onchange="showSite(this.value)">
+    <option value="">选择一个网站:</option>
+    <option value="1">Google</option>
+    <option value="2">淘宝</option>
+    <option value="3">菜鸟教程</option>
+    <option value="4">微博</option>
+    <option value="5">Facebook</option>
+    </select>
+    </form>
+    <br>
+    <div id="txtHint"><b>网站信息显示在这里……</b></div>
+    
+    </body>
+    </html>
+    showSite() 函数会执行以下步骤：
+        检查是否有网站被选择
+        创建 XMLHttpRequest 对象
+        创建在服务器响应就绪时执行的函数
+        向服务器上的文件发送请求
+        请注意添加到 URL 末端的参数（q）（包含下拉列表的内容）
+PHP 文件
+    上面这段通过 JavaScript 调用的服务器页面是名为 "getsite_mysql.php" 的 PHP 文件。
+    "getsite_mysql.php" 中的源代码会运行一次针对 MySQL 数据库的查询，然后在 HTML 表格中返回结果：
+    getsite_mysql.php 文件代码:
+    <?php
+    $q = isset($_GET["q"]) ? intval($_GET["q"]) : '';
+    
+    if(empty($q)) {
+        echo '请选择一个网站';
+        exit;
+    }
+    
+    $con = mysqli_connect('localhost','root','123456');
+    if (!$con)
+    {
+        die('Could not connect: ' . mysqli_error($con));
+    }
+    // 选择数据库
+    mysqli_select_db($con,"test");
+    // 设置编码，防止中文乱码
+    mysqli_set_charset($con, "utf8");
+    
+    $sql="SELECT * FROM Websites WHERE id = '".$q."'";
+    
+    $result = mysqli_query($con,$sql);
+    
+    echo "<table border='1'>
+    <tr>
+    <th>ID</th>
+    <th>网站名</th>
+    <th>网站 URL</th>
+    <th>Alexa 排名</th>
+    <th>国家</th>
+    </tr>";
+    
+    while($row = mysqli_fetch_array($result))
+    {
+        echo "<tr>";
+        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
+        echo "<td>" . $row['url'] . "</td>";
+        echo "<td>" . $row['alexa'] . "</td>";
+        echo "<td>" . $row['country'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    
+    mysqli_close($con);
+    ?>
+    解释：当查询从 JavaScript 发送到 PHP 文件时，将发生：
+        PHP 打开一个到 MySQL 数据库的连接
+        找到选中的用户
+        创建 HTML 表格，填充数据，并发送回 "txtHint" 占位符
+
+    
+PHP 实例 - AJAX 与 XML
+    AJAX 可用来与 XML 文件进行交互式通信。
+实例解释 - HTML 页面
+    当用户在上面的下拉列表中选择某张 CD 时，会执行名为 "showCD()" 的函数。该函数由 "onchange" 事件触发：
+
+    <html>
+    <head>
+    <script>
+    function showCD(str)
+    {
+        if (str=="")
+        {
+            document.getElementById("txtHint").innerHTML="";
+            return;
+        } 
+        if (window.XMLHttpRequest)
+        {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            // IE6, IE5 浏览器执行
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","getcd.php?q="+str,true);
+        xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+
+    <form>
+    Select a CD:
+    <select name="cds" onchange="showCD(this.value)">
+    <option value="">Select a CD:</option>
+    <option value="Bob Dylan">Bob Dylan</option>
+    <option value="Bonnie Tyler">Bonnie Tyler</option>
+    <option value="Dolly Parton">Dolly Parton</option>
+    </select>
+    </form>
+    <div id="txtHint"><b>CD info will be listed here...</b></div>
+
+    </body>
+    </html>
+    showCD() 函数会执行以下步骤：
+        检查是否有 CD 被选择
+        创建 XMLHttpRequest 对象
+        创建在服务器响应就绪时执行的函数
+        向服务器上的文件发送请求
+        请注意添加到 URL 末端的参数（q）（包含下拉列表的内容）
+PHP 文件
+    上面这段通过 JavaScript 调用的服务器页面是名为 "getcd.php" 的 PHP 文件。
+    PHP 脚本加载 XML 文档，"cd_catalog.xml"，运行针对 XML 文件的查询，并以 HTML 返回结果：
+    <?php
+    $q=$_GET["q"];
+
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load("cd_catalog.xml");
+
+    $x=$xmlDoc->getElementsByTagName('ARTIST');
+
+    for ($i=0; $i<=$x->length-1; $i++)
+    {
+        // 处理元素节点
+        if ($x->item($i)->nodeType==1)
+        {
+            if ($x->item($i)->childNodes->item(0)->nodeValue == $q)
+            {
+                $y=($x->item($i)->parentNode);
+            }
+        }
+    }
+
+    $cd=($y->childNodes);
+    for ($i=0;$i<$cd->length;$i++)
+    { 
+        // 处理元素节点
+        if ($cd->item($i)->nodeType==1)
+        {
+            echo("<b>" . $cd->item($i)->nodeName . ":</b> ");
+            echo($cd->item($i)->childNodes->item(0)->nodeValue);
+            echo("<br>");
+        }
+    }
+    ?>
+    当 CD 查询从 JavaScript 发送到 PHP 页面时，将发生：
+        PHP 创建 XML DOM 对象
+        查找所有 <artist> 元素中与 JavaScript 所传数据相匹配的名字
+        输出 album 的信息，并发送回 "txtHint" 占位符
+
+
+PHP 实例 - AJAX 实时搜索
+    AJAX 可为用户提供更友好、交互性更强的搜索体验。
+    AJAX Live Search
+        在下面的实例中，我们将演示一个实时的搜索，在您键入数据的同时即可得到搜索结果。
+        实时的搜索与传统的搜索相比，具有很多优势：
+            当键入数据时，就会显示出匹配的结果
+            当继续键入数据时，对结果进行过滤
+            如果结果太少，删除字符就可以获得更宽的范围
+    实例解释 - HTML 页面
+    当用户在上面的输入框中键入字符时，会执行 "showResult()" 函数。该函数由 "onkeyup" 事件触发：
+    <html>
+    <head>
+    <script>
+    function showResult(str)
+    {
+        if (str.length==0)
+        { 
+            document.getElementById("livesearch").innerHTML="";
+            document.getElementById("livesearch").style.border="0px";
+            return;
+        }
+        if (window.XMLHttpRequest)
+        {// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// IE6, IE5 浏览器执行
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
+                document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+            }
+        }
+        xmlhttp.open("GET","livesearch.php?q="+str,true);
+        xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+    <form>
+    <input type="text" size="30" onkeyup="showResult(this.value)">
+    <div id="livesearch"></div>
+    </form>
+    </body>
+    </html>
+    源代码解释：
+    如果输入框是空的（str.length==0），该函数会清空 livesearch 占位符的内容，并退出该函数。
+    如果输入框不是空的，那么 showResult() 会执行以下步骤：
+        创建 XMLHttpRequest 对象
+        创建在服务器响应就绪时执行的函数
+        向服务器上的文件发送请求
+        请注意添加到 URL 末端的参数（q）（包含输入框的内容）
+PHP 文件
+    上面这段通过 JavaScript 调用的服务器页面是名为 "livesearch.php" 的 PHP 文件。
+    "livesearch.php" 中的源代码会搜索 XML 文件中匹配搜索字符串的标题，并返回结果：
+    <?php
+    $xmlDoc=new DOMDocument();
+    $xmlDoc->load("links.xml");
+    $x=$xmlDoc->getElementsByTagName('link');
+    // 从 URL 中获取参数 q 的值
+    $q=$_GET["q"];
+    // 如果 q 参数存在则从 xml 文件中查找数据
+    if (strlen($q)>0)
+    {
+        $hint="";
+        for($i=0; $i<($x->length); $i++)
+        {
+            $y=$x->item($i)->getElementsByTagName('title');
+            $z=$x->item($i)->getElementsByTagName('url');
+            if ($y->item(0)->nodeType==1)
+            {
+                // 找到匹配搜索的链接
+                if (stristr($y->item(0)->childNodes->item(0)->nodeValue,$q))
+                {
+                    if ($hint=="")
+                    {
+                        $hint="<a href='" . 
+                        $z->item(0)->childNodes->item(0)->nodeValue . 
+                        "' target='_blank'>" . 
+                        $y->item(0)->childNodes->item(0)->nodeValue . "</a>";
+                    }
+                    else
+                    {
+                        $hint=$hint . "<br /><a href='" . 
+                        $z->item(0)->childNodes->item(0)->nodeValue . 
+                        "' target='_blank'>" . 
+                        $y->item(0)->childNodes->item(0)->nodeValue . "</a>";
+                    }
+                }
+            }
+        }
+    }
+
+    // 如果没找到则返回 "no suggestion"
+    if ($hint=="")
+    {
+        $response="no suggestion";
+    }
+    else
+    {
+        $response=$hint;
+    }
+    // 输出结果
+    echo $response;
+    ?>
+    如果 JavaScript 发送了任何文本（即 strlen($q) > 0），则会发生：
+        加载 XML 文件到新的 XML DOM 对象
+        遍历所有的 <title> 元素，以便找到匹配 JavaScript 所传文本
+        在 "$response" 变量中设置正确的 URL 和标题。如果找到多于一个匹配，所有的匹配都会添加到变量。
+        如果没有找到匹配，则把 $response 变量设置为 "no suggestion"。
+
+
+PHP 实例 - AJAX RSS 阅读器
+    RSS 阅读器用于阅读 RSS Feed。
+AJAX RSS 阅读器
+    在下面的实例中，我们将演示一个 RSS 阅读器，通过它，来自 RSS 的内容在网页不进行刷新的情况下被载入：
+    实例解释 - HTML 页面
+    当用户在上面的下拉列表中选择某个 RSS-feed 时，会执行名为 "showRSS()" 的函数。该函数由 "onchange" 事件触发：
+
+    实例
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script>
+    function showRSS(str)
+    {
+        if (str.length==0)
+        { 
+            document.getElementById("rssOutput").innerHTML="";
+            return;
+            }
+        if (window.XMLHttpRequest)
+        {
+            // IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {
+            // IE6, IE5 浏览器执行代码
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","getrss.php?q="+str,true);
+        xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+    
+    <form>
+    <select onchange="showRSS(this.value)">
+    <option value="">选择一个 RSS-feed:</option>
+    <option value="rss">读取 RSS 数据</option>
+    </select>
+    </form>
+    <br>
+    <div id="rssOutput">RSS-feed 数据列表...</div>
+    </body>
+    </html>
+    showRSS() 函数会执行以下步骤：
+
+    检查是否有 RSS-feed 被选择
+    创建 XMLHttpRequest 对象
+    创建在服务器响应就绪时执行的函数
+    向服务器上的文件发送请求
+    请注意添加到 URL 末端的参数（q）（包含下拉列表的内容）
+
+PHP 文件
+    文件 rss_demo.xml。
+    上面这段通过 JavaScript 调用的服务器页面是名为 "getrss.php" 的 PHP 文件：
+    实例
+    <?php
+    // rss 文件
+    $xml="rss_demo.xml";
+    $xmlDoc = new DOMDocument();
+    $xmlDoc->load($xml);
+    // 从 "<channel>" 中读取元素
+    $channel=$xmlDoc->getElementsByTagName('channel')->item(0);
+    $channel_title = $channel->getElementsByTagName('title')
+    ->item(0)->childNodes->item(0)->nodeValue;
+    $channel_link = $channel->getElementsByTagName('link')
+    ->item(0)->childNodes->item(0)->nodeValue;
+    $channel_desc = $channel->getElementsByTagName('description')
+    ->item(0)->childNodes->item(0)->nodeValue;
+    // 输出 "<channel>" 中的元素
+    echo("<p><a href='" . $channel_link
+    . "'>" . $channel_title . "</a>");
+    echo("<br>");
+    echo($channel_desc . "</p>");
+    // 输出 "<item>" 中的元素
+    $x=$xmlDoc->getElementsByTagName('item');
+    for ($i=0; $i<=1; $i++) {
+        $item_title=$x->item($i)->getElementsByTagName('title')
+        ->item(0)->childNodes->item(0)->nodeValue;
+        $item_link=$x->item($i)->getElementsByTagName('link')
+        ->item(0)->childNodes->item(0)->nodeValue;
+        $item_desc=$x->item($i)->getElementsByTagName('description')
+        ->item(0)->childNodes->item(0)->nodeValue;
+        echo ("<p><a href='" . $item_link
+        . "'>" . $item_title . "</a>");
+        echo ("<br>");
+        echo ($item_desc . "</p>");
+    }
+    ?>
+    当 RSS feed 的请求从 JavaScript 发送到 PHP 文件时，将发生：
+        检查哪个 RSS feed 被选中
+        创建一个新的 XML DOM 对象
+        在 xml 变量中加载 RSS 文档
+        从 channel 元素中提取并输出元素
+        从 item 元素中提取并输出元素
+
+
+AJAX 投票
+    在下面的实例中，我们将演示一个投票程序，通过它，投票结果在网页不进行刷新的情况下被显示。
+实例解释 - HTML 页面
+    当用户选择上面的某个选项时，会执行名为 "getVote()" 的函数。该函数由 "onclick" 事件触发。
+    poll.html 文件代码如下：
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script>
+    function getVote(int) {
+    if (window.XMLHttpRequest) {
+        // IE7+, Firefox, Chrome, Opera, Safari 执行代码
+        xmlhttp=new XMLHttpRequest();
+    } else {
+        // IE6, IE5 执行代码
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById("poll").innerHTML=xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET","poll_vote.php?vote="+int,true);
+    xmlhttp.send();
+    }
+    </script>
+    </head>
+    <body>
+
+    <div id="poll">
+    <h3>你喜欢 PHP 和 AJAX 吗?</h3>
+    <form>
+    是:
+    <input type="radio" name="vote" value="0" onclick="getVote(this.value)">
+    <br>否:
+    <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
+    </form>
+    </div>
+
+    </body>
+    </html>  
+    getVote() 函数会执行以下步骤：
+        创建 XMLHttpRequest 对象
+        创建在服务器响应就绪时执行的函数
+        向服务器上的文件发送请求
+        请注意添加到 URL 末端的参数（q）（包含下拉列表的内容）
+PHP 文件
+    上面这段通过 JavaScript 调用的服务器页面是名为 "poll_vote.php" 的 PHP 文件：
+
+    <?php
+    $vote = htmlspecialchars($_REQUEST['vote']);
+
+    // 获取文件中存储的数据
+    $filename = "poll_result.txt";
+    $content = file($filename);
+
+    // 将数据分割到数组中
+    $array = explode("||", $content[0]);
+    $yes = $array[0];
+    $no = $array[1];
+
+    if ($vote == 0)
+    {
+    $yes = $yes + 1;
+    }
+
+    if ($vote == 1)
+    {
+    $no = $no + 1;
+    }
+
+    // 插入投票数据
+    $insertvote = $yes."||".$no;
+    $fp = fopen($filename,"w");
+    fputs($fp,$insertvote);
+    fclose($fp);
+    ?>
+
+    <h2>结果:</h2>
+    <table>
+    <tr>
+    <td>是:</td>
+    <td>
+    <span style="display: inline-block; background-color:green;
+        width:<?php echo(100*round($yes/($no+$yes),2)); ?>px;
+        height:20px;" ></span>
+    <?php echo(100*round($yes/($no+$yes),2)); ?>%
+    </td>
+    </tr>
+    <tr>
+    <td>否:</td>
+    <td>
+    <span style="display: inline-block; background-color:red;
+        width:<?php echo(100*round($no/($no+$yes),2)); ?>px;
+        height:20px;"></span>
+    <?php echo(100*round($no/($no+$yes),2)); ?>%
+    </td>
+    </tr>
+    </table>
+    当所选的值从 JavaScript 发送到 PHP 文件时，将发生：
+
+        获取 "poll_result.txt" 文件的内容
+        把文件内容放入变量，并向被选变量累加 1
+        把结果写入 "poll_result.txt" 文件
+        输出图形化的投票结果
+文本文件
+    文本文件（poll_result.txt）中GIT存储来自投票程序的数据。
+    它存储的数据如下所示：
+    3||4
+    第一个数字表示 "Yes" 的投票数，第二个数字表示 "No" 的投票数。
+    注释：请记得只允许您的 Web 服务器来编辑该文本文件。不要让其他人获得访问权，除了 Web 服务器 (PHP)
+
+    这很不安全！攻击者能用简短的代码攻破！
+    //无限循环脚本
+    var Vote = 0;//你的票。
+    setInterval(function(){
+        getVote(Vote);
+    },2000);
+    怎样更安全？可以用 Cookies 记录下投票，这样攻击者还需清理 Cookies。
+
+    if(empty($_COOKIE["voted"])) {
+        setcookie("voted","yes!",ime()+60*60*24*365);
+    } else {
+        die("您已经投过票！");
+    }
+    学神之女
+    学神之女
+    dff***j@qq.com
+    2年前 (2018-05-08)
+
+    现在网
+    che***nzho@aliyun.com
+    实名反对 @学神之女 ：“怎样更安全？可以用 Cookies 记录下投票，这样攻击者还需清理 Cookies。”
+    这样其实也并不可取，我只要永远不携带 Cookie，我永远都能够提交进行刷票，就像这样：
+    <?php
+    //根据浏览器抓包得知，投票地址是如下：
+    $api_url = "https://www.runoob.com/try/demo_source/poll_vote.php?vote=0";
+    for($i=0; $i<1000; $i++){
+    //循环 1000 次用 file_get_contents 函数访问 投票地址 进行刷票
+    file_get_contents($api_url);
+    }
+    如果要抵制还是需要限制 IP + 需要携带Cookie
+    或者使用需要用户登录才能投票，可以是接入微信登录，让用户微信登陆后才能进行投票
